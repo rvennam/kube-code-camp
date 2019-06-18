@@ -15,35 +15,46 @@ which your cluster has access.
 
 1. Download a copy of this repository:
 
-  ```
-  git clone https://github.com/beemarie/kube-code-camp
-  ```
+    ```
+    git clone https://github.com/beemarie/kube-code-camp
+    ```
 
 2. Change directory to Exercise 2: 
 
    ```
-   cd Exercise2
+   cd kube-code-camp/Exercise2
    ```
 
-3. Run `ibmcloud cr login`. This will allow you to push images to the IBM Cloud Container Registry.
 
-4. Select a unique name for your project. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
+4. Ensure the region is set for the IBM Cloud Container Registry:
+
+    ```
+    ibmcloud cr region-set global
+    ```
+
+3. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
+
+    ```
+    ibmcloud cr login
+    ```
+
+5. Select a unique name for your project. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
     ```
     export MYPROJECT=<UNIQUE_PROJECT_NAME>
     ```
 
-5. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
+6. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
     ```
     export MYNAMESPACE=daimler-code-camp
-    export MYREGISTRY=de.icr.io
+    export MYREGISTRY=icr.io
     ```
    
-6. Build and tag (`-t`) the docker image:
+7. Build and tag (`-t`) the docker image:
     ```
     docker build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
     ```
 
-7. Verify the image is built: 
+8. Verify the image is built: 
 
    ```
    docker images
@@ -59,11 +70,9 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 # 2. Deploy your application
 
-1. Run `ibmcloud ks cluster-config <yourclustername>`, and set the variables based on the output of the command.
-
 2. Start by running your image as a deployment: 
 
-   ```kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world:1```
+   ```kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/hello-world:1```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods` or `kubectl get pods --watch`. You can use `ctrl+c` to exit the watch.
 
