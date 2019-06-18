@@ -68,7 +68,7 @@ which your cluster has access.
 
 You are now ready to use Kubernetes to deploy the hello-world application.
 
-# 2. Deploy your application
+# Deploy your application
 
 1. Start by running your image as a deployment: 
 
@@ -103,7 +103,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 1. Note the public IP for one of the workers, which you can see from the following command:
 
     ```
-    ibmcloud ks workers $MYCLUSTER`
+    ibmcloud ks workers $MYCLUSTER
     ```
 
 1. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done with this exercise!

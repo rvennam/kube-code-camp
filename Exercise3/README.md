@@ -2,12 +2,7 @@
 
 In this exercise, understand how to update the number of replicas a deployment has and how to safely roll out an update on Kubernetes. Learn, also, how to perform a simple health check.
 
-For this exercise, you need a running deployment with a single replica. At
-the end of the previous exercise, we cleaned up the running
-deployment. Let's first recreate that deployment with:
-```
-kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world
-```
+For this exercise, you need a running deployment with a single replica.
 
 # Scale apps with replicas
 
