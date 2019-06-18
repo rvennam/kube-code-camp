@@ -72,7 +72,9 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 2. Start by running your image as a deployment: 
 
-   ```kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0```
+   ```
+   kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
+   ```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods` or `kubectl get pods --watch`. You can use `ctrl+c` to exit the watch.
 
