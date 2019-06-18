@@ -7,7 +7,7 @@ Containers allow you to run securely isolated applications with quotas on system
 
 ## Objectives
 
-This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
+This exercise is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
 * Understand core concepts of Kubernetes
 * Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Kubernetes Service
 * Control application deployments, while minimizing your time with infrastructure management
@@ -147,15 +147,15 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 
 ###  Lab overview
 
-[Lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) (Optional): Provides a walkthrough for installing IBM Cloud command-line tools and the Kubernetes CLI. You can skip this lab if you have the IBM Cloud CLI, the container-service plugin, the containers-registry plugin, and the kubectl CLI already installed on your machine.
+[Exercise 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise0) (Optional): Provides a walkthrough for installing IBM Cloud command-line tools and the Kubernetes CLI. You can skip this exercise if you have the IBM Cloud CLI, the container-service plugin, the containers-registry plugin, and the kubectl CLI already installed on your machine.
 
-[Lab 1](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%201): This lab walks through creating and deploying a simple "hello world" app in Node.JS, then accessing that app.
+[Exercise 1](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise1): This exercise walks through creating and deploying a simple "hello world" app in Node.JS, then accessing that app.
 
-[Lab 2](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%202): Builds on lab 1 to expand to a more resilient setup which can survive having containers fail and recover. Lab 2 will also walk through basic services you need to get started with Kubernetes and the IBM Cloud Kubernetes Service
+[Exercise 2](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise2): Builds on Exer ise 1 to expand to a more resilient setup which can survive having containers fail and recover. Exercise 2 will also walk through basic services you need to get started with Kubernetes and the IBM Cloud Kubernetes Service
 
-[Lab 3](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%203): This lab covers adding external services to a cluster. It walks through adding integration to a Watson service, and discusses storing credentials of external services to the cluster.
+[Exercise 3](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise3): This exercise covers adding external services to a cluster. It walks through adding integration to a Watson service, and discusses storing credentials of external services to the cluster.
 
-[Lab 4](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%204) (Under Construction, Paid Only, Optional): This lab will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availability zones. As this requires a paid IBM Cloud account, skip this lab if you are sticking to the free tier.
+[Exercise 4](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise4) (Under Construction, Paid Only, Optional): This exercise will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availability zones.
 
-[Lab 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%205): This lab walks through securing your cluster and applications using network policies, and will later add leveraging tools like Vulnerability Advisor to secure images and manage security in your image registry.
+[Exercise 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise5): This exercise walks through securing your cluster and applications using network policies, and will later add leveraging tools like Vulnerability Advisor to secure images and manage security in your image registry.
 

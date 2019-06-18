@@ -1,11 +1,11 @@
-# Lab 1. Set up and deploy your first application
+# Set up and deploy your first application
 
 Learn how to push an image of an application to IBM Cloud Container Registry and deploy a basic application to a cluster.
 
-# 0. Install Prerequisite CLIs and Provision a Kubernetes Cluster
+# Install Prerequisite CLIs and Provision a Kubernetes Cluster
 
 If you haven't already:
-1. Install the CLIs and Docker, as described in [Lab 0](../Lab%200/README.md).
+1. Install the CLIs and Docker, as described in [Exercise 0](../Exercise0/README.md).
 2. Provision a cluster: 
 
    ```ibmcloud ks cluster-create --name <name-of-cluster>```
@@ -96,7 +96,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done!
 
-When you're all done, you can either use this deployment in the [next lab of this course](../Lab%203/README.md), or you can remove the deployment and thus stop taking the course.
+When you're all done, you can either use this deployment in the [next lab of this course](../Exercise3/README.md), or you can remove the deployment and thus stop taking the course.
 
 1. To remove the deployment, use `kubectl delete deployment hello-world`. 
 2. To remove the service, use `kubectl delete service hello-world`.
