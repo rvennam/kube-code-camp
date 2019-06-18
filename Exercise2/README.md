@@ -70,7 +70,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 # 2. Deploy your application
 
-2. Start by running your image as a deployment: 
+1. Start by running your image as a deployment: 
 
    ```
    kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
@@ -86,23 +86,27 @@ You are now ready to use Kubernetes to deploy the hello-world application.
    hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
    ```
 
-3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this lab listens on port 8080.  Run:
+1. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this lab listens on port 8080.  Run:
 
-   ```
-   kubectl expose deployment/hello-world --type="NodePort" --port=8080
-   ```
+    ```
+    kubectl expose deployment/hello-world --type="NodePort" --port=8080
+    ```
 
-4. To find the port used on that worker node, examine your new service: 
+1. To find the port used on that worker node, examine your new service: 
 
-   ```
-   kubectl describe service hello-world
-   ```
+    ```
+    kubectl describe service hello-world
+    ```
 
    Take note of the "NodePort:" line.
 
-5. Run `ibmcloud ks workers $MYCLUSTER`, and note the public IP for one of the workers.
+1. Note the public IP for one of the workers, which you can see from the following command:
 
-6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done with this exercise!
+    ```
+    ibmcloud ks workers $MYCLUSTER`
+    ```
+
+1. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done with this exercise!
 
 In this exercise, you built a docker image from a dockerfile. You then pushed that image to the IBM Cloud Container Registry. Finally, you deployed your application to Kubernetes, using the image stored in the container registry.
 
