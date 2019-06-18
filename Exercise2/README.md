@@ -15,9 +15,9 @@ which your cluster has access.
 
 1. Download a copy of this repository:
 
-  ```
-  git clone https://github.com/beemarie/kube-code-camp
-  ```
+    ```
+    git clone https://github.com/beemarie/kube-code-camp
+    ```
 
 2. Change directory to Exercise 2: 
 
