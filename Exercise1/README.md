@@ -52,4 +52,4 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     kubectl get node
     ```
     
-Continue on to [exercise 2](../exercise-2/README.md).
+Continue on to [exercise 2](../Exercise2/README.md).
