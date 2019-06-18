@@ -1,15 +1,15 @@
-# Lab 2: Scale and update apps -- services, replica sets, and health checks
+# Scale and update apps -- services, replica sets, and health checks
 
-In this lab, understand how to update the number of replicas a deployment has and how to safely roll out an update on Kubernetes. Learn, also, how to perform a simple health check.
+In this exercise, understand how to update the number of replicas a deployment has and how to safely roll out an update on Kubernetes. Learn, also, how to perform a simple health check.
 
-For this lab, you need a running deployment with a single replica. At
-the end of the previous lab, we cleaned up the running
+For this exercise, you need a running deployment with a single replica. At
+the end of the previous exercise, we cleaned up the running
 deployment. Let's first recreate that deployment with:
 ```
 kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world
 ```
 
-# 1. Scale apps with replicas
+# Scale apps with replicas
 
 A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica is a copy of a pod that already contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
@@ -26,7 +26,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
     try and make true, the condition of 10 replicas. It will do this
     by starting new pods with the same configuration.
 
-4. To see your changes being rolled out, you can run: `kubectl rollout status deployment/hello-world`.
+2. To see your changes being rolled out, you can run: `kubectl rollout status deployment/hello-world`.
 
    The rollout might occur so quickly that the following messages might _not_ display:
 
