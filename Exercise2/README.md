@@ -51,7 +51,7 @@ which your cluster has access.
    
 7. Build and tag (`-t`) the docker image:
     ```
-    docker build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
+    docker build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
 
 8. Verify the image is built: 
@@ -63,7 +63,7 @@ which your cluster has access.
 8. Now push that image up to IBM Cloud Container Registry: 
 
    ```
-   docker push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
+   docker push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
    ```
 
 You are now ready to use Kubernetes to deploy the hello-world application.
@@ -73,7 +73,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 1. Start by running your image as a deployment: 
 
    ```
-   kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
+   kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
    ```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods` or `kubectl get pods --watch`. You can use `ctrl+c` to exit the watch.
