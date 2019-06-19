@@ -6,7 +6,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 1. Change to the Excercise 4 directory:
 
     ```
-    cd ../Exercise4
+    cd ../exercise-4
     ```
 
 2. Edit the credentials.json file found in `watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `watson/credentials.json` and then save the file. The credentials required for this section of the lab were provided for you as a part of the grant-clusters app. You should already have these credentials.
@@ -120,3 +120,5 @@ By this time you have created pods, services, and volumes for this lab.
    ```http://<public-IP>:30080/analyze/"Today is a beautiful day"```
 
 If you can see JSON output on your screen, congratulations! You should see high percentages of `joy` and low percentages of emotions like `anger` or `disgust`. Try analyzing some different sentences to play around with the Tone Analyzer service. You are now done with this lab!
+
+Continue on to [Exercise 5](../exercise-5/README.md)

@@ -131,3 +131,5 @@ This will fail as we have not provided our users authorization for management of
 kubectl delete ns team-a team-b
 kubectl delete clusterrole cicd-apps
 ```
+
+Congratulations! You have completed the Introduction to Kubernetes Lab!

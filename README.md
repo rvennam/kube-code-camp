@@ -145,17 +145,5 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 * Capability to manage dedicated cluster resources for both stateless applications and stateful workloads
 
 
-###  Lab overview
-
-[Exercise 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise0) (Optional): Provides a walkthrough for installing IBM Cloud command-line tools and the Kubernetes CLI. You can skip this exercise if you have the IBM Cloud CLI, the container-service plugin, the containers-registry plugin, and the kubectl CLI already installed on your machine.
-
-[Exercise 1](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise1): This exercise walks through creating and deploying a simple "hello world" app in Node.JS, then accessing that app.
-
-[Exercise 2](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise2): Builds on Exer ise 1 to expand to a more resilient setup which can survive having containers fail and recover. Exercise 2 will also walk through basic services you need to get started with Kubernetes and the IBM Cloud Kubernetes Service
-
-[Exercise 3](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise3): This exercise covers adding external services to a cluster. It walks through adding integration to a Watson service, and discusses storing credentials of external services to the cluster.
-
-[Exercise 4](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise4) (Under Construction, Paid Only, Optional): This exercise will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availability zones.
-
-[Exercise 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Exercise5): This exercise walks through securing your cluster and applications using network policies, and will later add leveraging tools like Vulnerability Advisor to secure images and manage security in your image registry.
-
+### Get Started
+To get started with the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0)

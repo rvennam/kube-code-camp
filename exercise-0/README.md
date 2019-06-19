@@ -23,4 +23,4 @@ In this section, you will create your own IBM Cloud account, and then get access
 
 You will use this cluster for this lab. Note the name of your cluster. Note that this is a *Standard/Paid* cluster (as opposed to FREE cluster.)
 
-Continue on to [exercise 1](../Exercise1/README.md).
+Continue on to [exercise 1](../exercise-1/README.md).

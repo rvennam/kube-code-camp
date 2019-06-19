@@ -71,7 +71,7 @@ In the previous lab, we created an image with a `1` tag. Let's make a version of
 To update:
 1. Change directories to exercise 3:
     ```
-    cd ../Exercise3/
+    cd ../exercise-3/
     ```
 
 1. Build the new docker image with a `2` tag:
@@ -176,7 +176,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     echo $MYPROJECT
     ```
 
-2. To edit the file you need to click the pencil icon and edit the file at `Exercise3/healthcheck.yml`. You will update `registry.ng.bluemix.net/<namespace>/hello-world:2` to your own value, which should look something like `your_registry/your_namespace/<your_unique_project_name>:2` or `us.icr.io/bmv-ibm/bmv_app:2`. Save the file.
+2. To edit the file you need to click the pencil icon and edit the file at `exercise-3/healthcheck.yml`. You will update `<registry>/<namespace>/<unique_appname>:2` to your own value, which should look something like `us.icr.io/bmv-ibm/bmv_app:2`. Save the file.
 
 3. Note the HTTP liveness probe in `healthcheck.yml` that checks the health of the container every five seconds.
 
@@ -274,3 +274,5 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ```
 
 Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! You also learned how to undo a rollout and how to delete resources using a .yml file. Exercise 3 is now complete.
+
+Continue on to [Exercise 4](../exercise-4/README.md)

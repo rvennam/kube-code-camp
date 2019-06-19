@@ -22,7 +22,7 @@ which your cluster has access.
 2. Change directory to Exercise 2: 
 
    ```
-   cd kube-code-camp/Exercise2
+   cd kube-code-camp/exercise-2
    ```
 
 
@@ -120,4 +120,4 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 In this exercise, you built a docker image from a dockerfile. You then pushed that image to the IBM Cloud Container Registry. Finally, you deployed your application to Kubernetes, using the image stored in the container registry.
 
-Continue on to [Exercise 3](../Exercise3/README.md)
+Continue on to [Exercise 3](../exercise-3/README.md)
