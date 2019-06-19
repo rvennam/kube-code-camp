@@ -9,7 +9,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
     cd ../exercise-4
     ```
 
-2. Edit the credentials.json file found in `watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `watson/credentials.json` and then save the file. The credentials required for this section of the lab were provided for you as a part of the grant-clusters app. You should already have these credentials.
+2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `kube-code-camp/exercise-4/watson/credentials.json` and then save the file. The credentials required for this section of the lab were provided for you as a part of the grant-clusters app. You should already have these credentials.
 
 3. Create a Kubernetes Secret based on the credentials stored in this file.
 
@@ -42,7 +42,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
    ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYTALKAPP ./watson-talk
    ```
 
-6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.
+6. In watson-deployment.yml, update the image tag with the registry path to the two images you just created in the following two sections. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
 
    ```yml
        spec:
