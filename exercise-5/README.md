@@ -112,8 +112,8 @@ kubectl --token=$JENKINS_KUBE_TOKEN get deployments -n team-b
 Now we can test deploying some apps just as our pipeline tools would do so in real life.
 
 ```
-kubectl --token=$TRAVIS_KUBE_TOKEN -n team-a run hello-app --image=kitch/hello-app:1.0 --replicas 3
-kubectl --token=$JENKINS_KUBE_TOKEN -n team-b run hello-app --image=kitch/hello-app:1.0 --replicas 3
+kubectl --token=$TRAVIS_KUBE_TOKEN -n team-a run hello-app --image=beemarie/hello-app:1.0 --replicas 3
+kubectl --token=$JENKINS_KUBE_TOKEN -n team-b run hello-app --image=beemarie/hello-app:1.0 --replicas 3
 ```
 
 Let's see how our new deployments are doing
