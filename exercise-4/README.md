@@ -62,14 +62,14 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
            - name: watson
              image: "<registry>/<namespace>/<watsonapp>" 
              # change to the path of the watson image you just pushed
-             # ex: image: "us.icr.io/bmv-ibm/bmv-watson-1234"
+             # ex: image: "de.icr.io/bmv-ibm/bmv-watson-1234"
    ...
        spec:
          containers:
            - name: watson-talk
              image: "<registry>/<namespace>/<talkapp>" 
              # change to the path of the watson-talk image you just pushed
-             # ex: image: "us.icr.io/bmv-ibm/bmv-watson-talk-1234"
+             # ex: image: "de.icr.io/bmv-ibm/bmv-watson-talk-1234"
    ```
 
 # 4. Create pods and services
