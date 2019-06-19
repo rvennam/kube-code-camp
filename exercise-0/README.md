@@ -4,7 +4,7 @@ In this section, you will create your own IBM Cloud account, and then get access
 ## Create an IBM Cloud Account and Get Access to Your Cluster
 1. Create your own [IBM Cloud account](https://ibm.biz/Bdzybn).
 2. After the email verification, confirm by logging in to https://cloud.ibm.com
-3. Go to the [Get Cluster](TODO:GETCLUSTER) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `eu-fra` region.
+3. Go to the [Grant Cluster](https://grant-cluster-kubeconeu.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `eu-fra` region.
 
     ![](../README_images/get-clusters.png)
 
