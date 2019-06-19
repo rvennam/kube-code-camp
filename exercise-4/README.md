@@ -67,6 +67,7 @@ Now that the service is bound to the cluster, you want to expose the secret to y
         volumeMounts:
           - mountPath: /var/credentials
             name: apikeyvol
+    ...
       volumes:
         - name: apikeyvol
           secret:
