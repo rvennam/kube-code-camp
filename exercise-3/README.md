@@ -230,13 +230,19 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
 2. In the **Pods** section of the **Workloads** tab you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few seconds and refresh again. You see the number of restarts changes for each pod.
 
-3. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
+3. Feel free to explore the dashboard a bit.
 
 # Roll Back Apps
 1. If you decide that you want to undo your latest rollout, you can do so with the `kubectl rollout` command. Let's try that now:
 
     ```
     kubectl rollout undo deployment/hello-world
+    ```
+
+2. You can watch the status with the following command:
+
+    ```
+    kubectl rollout status deployment/hello-world
     ```
 
 # Cleanup
