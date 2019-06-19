@@ -228,7 +228,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
 1. In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. 
 
-2. In the **Pods** section of the **Workloads** tab you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
+2. In the **Pods** section of the **Workloads** tab you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few seconds and refresh again. You see the number of restarts changes for each pod.
 
 3. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
 
