@@ -251,8 +251,14 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ```
     kubectl delete -f healthcheck.yml
     ```
+2. Let's also clean up the hello-world deployment and service we created in the previous lab.
+    
+    ```
+    kubectl delete deployment hello-world
+    kubectl delete service hello-world
+    ```
 
-2. Let's also clean up the images from the registry.
+2. Finally, let's clean up the images from the registry.
 
     ```
     ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
