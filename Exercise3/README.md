@@ -62,13 +62,13 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 ![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
 
-# Update and roll back apps
+# Update Apps
 
 Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
 In the previous lab, we created an image with a `1` tag. Let's make a version of the image that includes new content and use a `2` tag. This exercise also contains a `Dockerfile`. Let's build and push it up to our image registry.
 
-To update and roll back:
+To update:
 1. Change directories to exercise 3:
     ```
     cd ../Exercise3/
@@ -252,17 +252,25 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
 3. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
 
-4. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
+# Roll Back Apps
+1. If you decide that you want to undo your latest rollout, you can do so with the `kubectl rollout` command. Let's try that now:
+
+    ```
+    kubectl rollout undo deployment/hello-world
+    ```
+
+# Cleanup
+1. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
 
     ```
     kubectl delete -f healthcheck.yml
     ```
 
-5. Let's also clean up the images from the registry.
+2. Let's also clean up the images from the registry.
 
     ```
     ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
 
-Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! Lab 3 is now complete.
+Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! You also learned how to undo a rollout and how to delete resources using a .yml file. Exercise 3 is now complete.
