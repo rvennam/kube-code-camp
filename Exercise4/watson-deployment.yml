@@ -12,16 +12,15 @@ spec:
     spec:
       containers:
         - name: watson
-          image: "registry.ng.bluemix.net/<namespace>/watson" # edit here!
+          image: "<registry>/<namespace>/<watsonapp>" # edit here!
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /opt/service-bind
-              name: service-bind-volume
+            - mountPath: /var/credentials
+              name: apikeyvol
       volumes:
-        - name: service-bind-volume
+        - name: apikeyvol
           secret:
-            defaultMode: 420
-            secretName: binding-tone
+            secretName: apikey
 ---
 apiVersion: v1
 kind: Service
@@ -52,7 +51,7 @@ spec:
     spec:
       containers:
         - name: watson-talk
-          image: "registry.ng.bluemix.net/<namespace>/watson-talk" # edit here!
+          image: "<registry>/<namespace>/<talkapp>" # edit here!
           imagePullPolicy: Always
 ---
 apiVersion: v1

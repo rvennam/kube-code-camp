@@ -5,7 +5,7 @@ var fs = require('fs')
 
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 
-var binding = JSON.parse(fs.readFileSync('/opt/service-bind/binding', 'utf8'));
+var binding = JSON.parse(fs.readFileSync('/var/credentials/credentials.json'));
 
 const tone_analyzer = binding.apikey ? new ToneAnalyzerV3({
  iam_apikey: binding.apikey,

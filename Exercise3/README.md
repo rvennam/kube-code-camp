@@ -258,4 +258,11 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     kubectl delete -f healthcheck.yml
     ```
 
+5. Let's also clean up the images from the registry.
+
+    ```
+    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
+    ```
+
 Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! Lab 3 is now complete.
