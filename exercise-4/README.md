@@ -67,10 +67,10 @@ Now that the service is bound to the cluster, you want to expose the secret to y
         volumeMounts:
           - mountPath: /var/credentials
             name: apikeyvol
-    volumes:
-      - name: apikeyvol
-        secret:
-          secretName: apikey
+      volumes:
+        - name: apikeyvol
+          secret:
+            secretName: apikey
     ```
 
 1. Build the application using the yaml.
