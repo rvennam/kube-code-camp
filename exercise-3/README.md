@@ -211,40 +211,18 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ibmcloud ks workers $MYCLUSTER
     ```
 
-    In a browser, go to `IP:NodePort/healthz`, and you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.
+    In a browser, go to `IP:30072/healthz`, and you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.
 
     For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
 
 # Launch the Kubernetes Dashboard
 
-1. Get your credentials for Kubernetes.
-  
-  ```
-  kubectl config view -o jsonpath='{.users[0].user.auth-provider.config.id-token}'
-  ```
+1. Go back to your clusters detail page in the IBM Cloud UI. If you don't still have this open, you can go the [clusters](https://cloud.ibm.com/kubernetes/clusters/) page and select your cluster.
 
-2. Copy the **id-token** value that is shown in the output.     
+2. Click the Kubernetes Dashboard button.
 
-3. Set the proxy with the default port number.
+    ![](../README_images/kube-dashboard.png)
 
-    ```
-    kubectl proxy
-    ```
-
-    Output:
-    ```
-    Starting to serve on 127.0.0.1:8001
-    ```
-      
-4. Open the following URL in a web browser.
-    
-    ```
-    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-    ```
-
-5. In the sign-on page, select the **Token** authentication method.
-
-6. Then, paste the **id-token** value that you previously copied into the **Token** field and click **SIGN IN**.
 
 # Explore the Kubernetes Dashboard
 
