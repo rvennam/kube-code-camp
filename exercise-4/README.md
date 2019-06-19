@@ -74,13 +74,13 @@ Now that the service is bound to the cluster, you want to expose the secret to y
         secretName: apikey
   ```
 
-1. Build the application using the yaml.
+1. Create the deployment and services making up your application using the .yml file.
 
    ```
    kubectl create -f watson-deployment.yml
    ```
 
-2. Verify the pod has been created:
+2. Verify the pods have been created:
 
    ```
    kubectl get pods
@@ -109,5 +109,11 @@ By this time you have created pods, services, and volumes for this lab.
    ```http://<public-IP>:30080/analyze/"Today is a beautiful day"```
 
 If you can see JSON output on your screen, congratulations! You should see high percentages of `joy` and low percentages of emotions like `anger` or `disgust`. Try analyzing some different sentences to play around with the Tone Analyzer service. You are now done with this lab!
+
+4. Clean up the deployment, pods, and services you created:
+
+    ```
+    kubectl delete -f watson-deployment.yml
+    ```
 
 Continue on to [Exercise 5](../exercise-5/README.md)
