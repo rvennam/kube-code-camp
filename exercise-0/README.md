@@ -2,13 +2,13 @@
 In this section, you will create your own IBM Cloud account, and then get access to a IBM Cloud Lab account which contains pre-provisioned clusters. Each lab attendee will be granted access to one cluster.
 
 ## Login with your IBM Cloud Account and Get Access to Your Cluster
-1. You should already have a federated IBM Cloud account using your Daimler email address, confirm by logging in to https://cloud.ibm.com
+1. You should already have a federated IBM Cloud account using your company email address, confirm by logging in to https://cloud.ibm.com
 2. If you do not have an account, you could create your own [IBM Cloud account](https://ibm.biz/Bdzybn).
-3. Go to the [Grant Cluster](https://grant-cluster-kubeconeu.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `eu-fra` region.
+3. Go to the [Grant Cluster](https://grant-cluster-kubeconeu.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `Frankfurt (eu-de)` region.
 
     ![](../README_images/get-clusters.png)
 
-3. You will be added to the IBM Lab account and granted access to a cluster. Note the name of your cluster. It will be something like: `kubelab-01`
+3. You will be added to the IBM Lab account and granted access to a cluster. Note the name of your cluster. It will be something like: `mycluster001`
 4. Refresh your [IBM Cloud Dashboard](https://cloud.ibm.com)
 5. Switch to the **IBM** account by clicking on the account selection drop down in the top nav bar.
 6. Click on **Kubernetes Clusters** in the Resource Summary tile.
