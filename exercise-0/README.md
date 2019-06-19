@@ -1,9 +1,9 @@
 # Get Started
 In this section, you will create your own IBM Cloud account, and then get access to a IBM Cloud Lab account which contains pre-provisioned clusters. Each lab attendee will be granted access to one cluster.
 
-## Create an IBM Cloud Account and Get Access to Your Cluster
-1. Create your own [IBM Cloud account](https://ibm.biz/Bdzybn).
-2. After the email verification, confirm by logging in to https://cloud.ibm.com
+## Login with your IBM Cloud Account and Get Access to Your Cluster
+1. You should already have a federated IBM Cloud account using your Daimler email address, confirm by logging in to https://cloud.ibm.com
+2. If you do not have an account, you could create your own [IBM Cloud account](https://ibm.biz/Bdzybn).
 3. Go to the [Grant Cluster](https://grant-cluster-kubeconeu.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `eu-fra` region.
 
     ![](../README_images/get-clusters.png)
