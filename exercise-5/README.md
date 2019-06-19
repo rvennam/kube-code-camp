@@ -39,7 +39,7 @@ A `RoleBinding` grants the permissions defined in a role to a user or set of use
 
 Source and additional reading: https://kubernetes.io/docs/reference/access-authn-authz/rbac/. 
 
-Create a ClusterRole as well as some bindings in order to authorize our service accounts to manage deployments.
+Create a ClusterRole as well as some bindings in order to authorize our service accounts to manage deployments. Copy and paste the following 3 commands into your CLI to create the ClusterRole and RoleBindings.
 
 ```
 cat <<EOF | kubectl apply -f -
