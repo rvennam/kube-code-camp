@@ -20,11 +20,12 @@ This lab is an introduction to using Docker containers on Kubernetes in the IBM 
 ## Get Started
 Feel free to continue reading for some additional information on Containers, Virtual Machines, and Kubernetes before starting t he lab. To skip the information and go directly to the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0). 
 
-## Virtual machines
+## Kubernetes and Containers: An Overview
+### Virtual machines
 
 Prior to containers, most infrastructure ran not on bare metal, but atop hypervisors managing multiple virtualized operating systems (OSes). This arrangement allowed isolation of applications from one another on a higher level than that provided by the OS. These virtualized operating systems see what looks like their own exclusive hardware. However, this also means that each of these virtual operating systems are replicating an entire OS, taking up disk space.
 
-## Containers
+### Containers
 
 Containers provide isolation similar to VMs, except provided by the OS and at the process level. Each container is a process or group of processes run in isolation. Typical containers explicitly run only a single process, as they have no need for the standard system services. What they usually need to do can be provided by system calls to the base OS kernel.
 
@@ -39,7 +40,7 @@ This is a list of some of the namespaces that are commonly used and visible to t
 * NET - network devices, stacks, and ports
 * CGROUPS - control limits and monitoring of resources
 
-## VM vs container
+### VM vs container
 
 Traditional applications are run on native hardware. A single application does not typically use the full resources of a single machine. We try to run multiple applications on a single machine to avoid wasting resources. We could run multiple copies of the same application, but to provide isolation we use VMs to run multiple application instances (VMs) on the same hardware. These VMs have full operating system stacks which make them relatively large and inefficient due to duplication both at runtime and on disk.
 
@@ -47,7 +48,7 @@ Traditional applications are run on native hardware. A single application does n
 
 Containers allow you to share the host OS. This reduces duplication while still providing the isolation. Containers also allow you to drop unneeded files such as system libraries and binaries to save space and reduce your attack surface. If SSHD or LIBC are not installed, they cannot be exploited.
 
-## What is Kubernetes?
+### What is Kubernetes?
 
 Now that we know what containers are, let's define what Kubernetes is. Kubernetes is a container orchestrator to provision, manage, and scale applications. In other words, Kubernetes allows you to manage the lifecycle of containerized applications within a cluster of nodes (which are a collection of worker machines, for example, VMs, physical machines etc.).
 
@@ -65,7 +66,7 @@ Google wanted to open source their knowledge of creating and running the interna
 
 Main entry point for the kubernetes project is at [https://kubernetes.io/](https://kubernetes.io/) and the source code can be found at [https://github.com/kubernetes](https://github.com/kubernetes).
 
-## Kubernetes architecture
+### Kubernetes architecture
 
 At its core, Kubernetes is a data store (etcd). The declarative model is stored in the data store as objects, that means when you say I want 5 instances of a container then that request is stored into the data store. This information change is watched and delegated to Controllers to take action. Controllers then react to the model and attempt to take action to achieve the desired state. The power of Kubernetes is in its simplistic model.
 
@@ -73,7 +74,7 @@ As shown, API server is a simple HTTP server handling create/read/update/delete(
 
 ![architecture diagram](/images/kubernetes_arch.png)
 
-## Kubernetes resource model
+### Kubernetes resource model
 
 Kubernetes Infrastructure defines a resource for every purpose. Each resource is monitored and processed by a controller. When you define your application, it contains a collection of these resources. This collection will then be read by Controllers to build your application's actual backing instances. Some of resources that you may work with are listed below for your reference, for a full list you should go to [https://kubernetes.io/docs/concepts/](https://kubernetes.io/docs/concepts/). In this class we will only use a few of them, like Pod, Deployment, etc.
 
@@ -100,7 +101,7 @@ Kubernetes Infrastructure defines a resource for every purpose. Each resource is
 
 Kubernetes does not have the concept of an application. It has simple building blocks that you are required to compose. Kubernetes is a cloud native platform where the internal resource model is the same as the end user resource model.
 
-## Key resources
+### Key resources
 
 A Pod is the smallest object model that you can create and run. You can add labels to a pod to identify a subset to run operations on. When you are ready to scale your application you can use the label to tell Kubernetes which Pod you need to scale. A Pod typically represent a process in your cluster. Pods contain at least one container that runs the job and additionally may have other containers in it called sidecars for monitoring, logging, etc. Essentially a Pod is a group of containers.
 
@@ -113,7 +114,7 @@ The user directly manipulates resources via yaml:
 
 Kubernetes provides us with a client interface through ‘kubectl’. Kubectl commands allow you to manage your applications, manage cluster and cluster resources, by modifying the model in the data store.
 
-## Kubernetes application deployment workflow
+### Kubernetes application deployment workflow
 
 ![deployment workflow](/images/app_deploy_workflow.png)
 
