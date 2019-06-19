@@ -17,8 +17,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
    deployment "hello-world" scaled
    ```
 
-    Kubernetes will now act according to the desired state model to
-    try and make true, the condition of 10 replicas. It will do this
+    Kubernetes will now act according to the desired state model, and attempt to make true the condition of 10 replicas. It will do this
     by starting new pods with the same configuration.
 
 2. To see your changes being rolled out, you can run: `kubectl rollout status deployment/hello-world`.
