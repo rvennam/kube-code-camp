@@ -66,19 +66,24 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
-In the previous lab, we created an image with a `1` tag. Let's make a version of the image that includes new content and use a `2` tag. This lab also contains a `Dockerfile`. Let's build and push it up to our image registry.
+In the previous lab, we created an image with a `1` tag. Let's make a version of the image that includes new content and use a `2` tag. This exercise also contains a `Dockerfile`. Let's build and push it up to our image registry.
 
 To update and roll back:
+1. Change directories to exercise 3:
+    ```
+    cd ../Exercise3/
+    ```
+
 1. Build the new docker image with a `2` tag:
 
     ```
-    docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:2 .
+    docker build . --tag $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
 2. Push the image to the IBM Cloud Container Registry:
 
     ```
-    docker push registry.ng.bluemix.net/<my_namespace>/hello-world:2
+    docker push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
 3. Using `kubectl`, you can now update your deployment to use the
@@ -87,7 +92,7 @@ To update and roll back:
    image being used.
 
     ```
-    kubectl set image deployment/hello-world hello-world=registry.ng.bluemix.net/<namespace>/hello-world:2
+    kubectl set image deployment/hello-world hello-world=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
@@ -147,11 +152,15 @@ To update and roll back:
    hello-world-3254495675   10        10        10        1m
    ```
 
-5. Perform a `curl <public-IP>:<nodeport>` to confirm your new code is active.
+5. Confirm your new code is active:
 
-6. If you decide to undo your latest rollout, call: `kubectl rollout undo deployment/<name-of-deployment>`.
+    ```
+    curl $PUBLICIP:$NODEPORT
+    ```
 
-# 3. Check the health of apps
+You should see something like: `Hello world from hello-world-86959dc89b-hgzs8! Great job getting the second stage up and running!`
+
+# Check the health of apps
 
 Kubernetes uses availability checks (liveness probes) to know when to restart a container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such a state can help to make the application more available despite bugs.
 
@@ -159,86 +168,94 @@ Also, Kubernetes uses readiness checks to know when a container is ready to star
 
 In this example, we have defined a HTTP liveness probe to check health of the container every five seconds. For the first 10-15 seconds the `/healthz` returns a `200` response and will fail afterward. Kubernetes will automatically restart the service.  
 
-1. Open the `healthcheck.yml` file with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
+1. The `healthcheck.yml` file is a configuration script that combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods. We will need to update the line for `image` so that it includes your own image details. You stored these values in environment variables, so you could echo those environment variables to get your information.
 
-   1. Update the details for the image in your private registry namespace:
+    ```
+    echo $MYREGISTRY
+    echo $MYNAMESPACE
+    echo $MYPROJECT
+    ```
 
-      ```
-      image: "registry.<region>.bluemix.net/<namespace>/hello-world:2"
-      ```
+2. To edit the file you need to click the pencil icon and edit the file at `Exercise3/healthcheck.yml`. You will update `registry.ng.bluemix.net/<namespace>/hello-world:2` to your own value, which should look something like `your_registry/your_namespace/<your_unique_project_name>:2` or `us.icr.io/bmv-ibm/bmv_app:2`. Save the file.
 
-   2. Note the HTTP liveness probe that checks the health of the container every five seconds.
+3. Note the HTTP liveness probe in `healthcheck.yml` that checks the health of the container every five seconds.
 
-      ```
-      livenessProbe:
-                  httpGet:
-                    path: /healthz
-                    port: 8080
-                  initialDelaySeconds: 5
-                  periodSeconds: 5
-      ```
+    ```
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+    ```
 
-   3. In the **Service** section, note the `NodePort`. Rather than generating a random NodePort like you did in the previous lesson, you can specify a port in the 30000 - 32767 range. This example uses 30072.
+4. In the **Service** section, note the `NodePort`. Rather than generating a random NodePort like you did in the previous lesson, you can specify a port in the 30000 - 32767 range. This example uses 30072.
 
-2. Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
+5. Return to the cloudshell. Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
 
    ```
    kubectl apply -f healthcheck.yml
    ```
-   
-   Now that all the deployment work is done, check how everything turned out. You might notice that because more instances are running, things might run a bit slower.
 
-3. Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
+6. Check out the new pods that were created.
 
-   ```
-   ibmcloud ks workers <cluster-name>
-   ```
+    ```
+    kubectl get pods
+    ```
 
-   In a browser, you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.
+7. Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
 
-   For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
+    ```
+    ibmcloud ks workers $MYCLUSTER
+    ```
 
-4. Launch your Kubernetes dashboard:
+    In a browser, go to `IP:NodePort/healthz`, and you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.
 
-   1. Get your credentials for Kubernetes.
-      
-      ```
-      kubectl config view -o jsonpath='{.users[0].user.auth-provider.config.id-token}'
-      ```
+    For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
 
-   2. Copy the **id-token** value that is shown in the output.     
-   
-   3. Set the proxy with the default port number.
+# Launch the Kubernetes Dashboard
 
-      ```
-      kubectl proxy
-      ```
-
-      Output:
-
-      ```
-      Starting to serve on 127.0.0.1:8001
-      ```
-   
-   4. Sign in to the dashboard.
-      
-      1. Open the following URL in a web browser.
-         
-         ```
-         http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-         ```
-      
-      2. In the sign-on page, select the **Token** authentication method.
- 
-      3. Then, paste the **id-token** value that you previously copied into the **Token** field and click **SIGN IN**.
+1. Get your credentials for Kubernetes.
   
-   In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. In the **Pods** section, you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
+  ```
+  kubectl config view -o jsonpath='{.users[0].user.auth-provider.config.id-token}'
+  ```
 
-5. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
+2. Copy the **id-token** value that is shown in the output.     
 
-   ```kubectl delete -f healthcheck.yml```
+3. Set the proxy with the default port number.
 
-6. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
+    ```
+    kubectl proxy
+    ```
 
+    Output:
+    ```
+    Starting to serve on 127.0.0.1:8001
+    ```
+      
+4. Open the following URL in a web browser.
+    
+    ```
+    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+    ```
 
-Congratulations! You deployed the second version of the app. You had to use fewer commands, learned how health check works, and edited a deployment, which is great! Lab 3 is now complete.
+5. In the sign-on page, select the **Token** authentication method.
+
+6. Then, paste the **id-token** value that you previously copied into the **Token** field and click **SIGN IN**.
+
+# Explore the Kubernetes Dashboard
+
+1. In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. 
+
+2. In the **Pods** section of the **Workloads** tab you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
+
+3. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
+
+4. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
+
+    ```
+    kubectl delete -f healthcheck.yml
+    ```
+
+Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! Lab 3 is now complete.

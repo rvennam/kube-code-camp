@@ -98,7 +98,11 @@ You are now ready to use Kubernetes to deploy the hello-world application.
     kubectl describe service hello-world
     ```
 
-   Take note of the "NodePort:" line.
+   Take note of the "NodePort:" line, and save the port number as an environment variable.  The port number will be just the number from this line.
+
+    ```
+    export NODEPORT=<your_port_here>
+    ```
 
 1. Note the public IP for one of the workers, which you can see from the following command:
 
@@ -106,7 +110,13 @@ You are now ready to use Kubernetes to deploy the hello-world application.
     ibmcloud ks workers $MYCLUSTER
     ```
 
-1. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done with this exercise!
+1. Save this IP as an environment variable
+
+    ```
+    export PUBLICIP=<your_ip_here>
+    ```
+
+1. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see something like `Hello world from hello-world-86959dc89b-r6jjx! Your app is up and running in a cluster!` you're done with this exercise!
 
 In this exercise, you built a docker image from a dockerfile. You then pushed that image to the IBM Cloud Container Registry. Finally, you deployed your application to Kubernetes, using the image stored in the container registry.
 
