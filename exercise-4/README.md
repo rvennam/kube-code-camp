@@ -25,33 +25,21 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
     export MYWATSONAPP=<your_unique_name>
     ```
 
-2. Build the `watson` image.
+2. Build the image, and push it to the IBM Cloud Container Registry using the `ibmcloud cr build` command.
 
    ```
    ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYWATSONAPP ./watson
    ```
-
-3. Push the `watson` image to IBM Cloud Container Registry.
-
-    ```
-    ibmcloud cr push $MYREGISTRY/$MYNAMESPACE/$MYWATSONAPP
-    ```
 
 4. Create a unique application name for the watson-talk app you're about to create. Something like `bmv-watson-talk-1111`
 
     ```
     export MYTALKAPP=<your_unique_talk_app_name>
     ```
-4. Build the `watson-talk` image.
+4. Build the `watson-talk` image, and push it to the IBM Cloud Container Registry using the `ibmcloud cr build` command.
 
    ```
    ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYTALKAPP ./watson-talk
-   ```
-
-5. Push the `watson-talk` image to IBM Cloud Container Registry.
-
-   ```
-   ibmcloud cr push $MYREGISTRY/$MYNAMESPACE/$MYTALKAPP
    ```
 
 6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.

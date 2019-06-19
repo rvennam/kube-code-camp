@@ -74,17 +74,12 @@ To update:
     cd ../exercise-3/
     ```
 
-1. Build the new docker image with a `2` tag:
+1. Build the new docker image with a `2` tag, and push it to the IBM Cloud Container Registry using the `ibmcloud cr build` command:
 
     ```
     ibmcloud cr build . --tag $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
-2. Push the image to the IBM Cloud Container Registry:
-
-    ```
-    ibmcloud cr push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
-    ```
 
 3. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing

@@ -49,7 +49,7 @@ which your cluster has access.
     export MYREGISTRY=de.icr.io
     ```
    
-7. Build and tag (`-t`) the docker image:
+7. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
     ```
     ibmcloud cr build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
@@ -58,12 +58,6 @@ which your cluster has access.
 
    ```
    ibmcloud cr images
-   ```
-
-8. Now push that image up to IBM Cloud Container Registry: 
-
-   ```
-   ibmcloud cr push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
    ```
 
 You are now ready to use Kubernetes to deploy the hello-world application.
