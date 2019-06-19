@@ -44,21 +44,21 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 6. In watson-deployment.yml, update the image tag with the registry path to the two images you just created in the following two sections. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
 
-   ```yml
-       spec:
-         containers:
-           - name: watson
-             image: "<registry>/<namespace>/<watsonapp>" 
-             # change to the path of the watson image you just pushed
-             # ex: image: "de.icr.io/bmv-ibm/bmv-watson-1234"
-   ...
-       spec:
-         containers:
-           - name: watson-talk
-             image: "<registry>/<namespace>/<talkapp>" 
-             # change to the path of the watson-talk image you just pushed
-             # ex: image: "de.icr.io/bmv-ibm/bmv-watson-talk-1234"
-   ```
+  ```yml
+      spec:
+        containers:
+          - name: watson
+            image: "<registry>/<namespace>/<watsonapp>" 
+            # change to the path of the watson image you just pushed
+            # ex: image: "de.icr.io/bmv-ibm/bmv-watson-1234"
+  ...
+      spec:
+        containers:
+          - name: watson-talk
+            image: "<registry>/<namespace>/<talkapp>" 
+            # change to the path of the watson-talk image you just pushed
+            # ex: image: "de.icr.io/bmv-ibm/bmv-watson-talk-1234"
+  ```
 
 # 4. Create pods and services
 Now that the service is bound to the cluster, you want to expose the secret to your pod so that it can utilize the service. To do this, create a secret datastore as a part of your deployment configuration. This has been done for you in watson-deployment.yml:
