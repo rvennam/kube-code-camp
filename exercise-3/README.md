@@ -77,13 +77,13 @@ To update:
 1. Build the new docker image with a `2` tag:
 
     ```
-    docker build . --tag $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    ibmcloud cr build . --tag $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
 2. Push the image to the IBM Cloud Container Registry:
 
     ```
-    docker push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    ibmcloud cr push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
 3. Using `kubectl`, you can now update your deployment to use the
