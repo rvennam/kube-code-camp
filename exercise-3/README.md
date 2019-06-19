@@ -20,42 +20,46 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
     Kubernetes will now act according to the desired state model, and attempt to make true the condition of 10 replicas. It will do this
     by starting new pods with the same configuration.
 
-2. To see your changes being rolled out, you can run: `kubectl rollout status deployment/hello-world`.
+2. Let's see your changes being rolled out:
+    
+    ```
+    kubectl rollout status deployment/hello-world
+    ```
 
    The rollout might occur so quickly that the following messages might _not_ display:
 
-   ```
-   => kubectl rollout status deployment/hello-world
-   Waiting for rollout to finish: 1 of 10 updated replicas are available...
-   Waiting for rollout to finish: 2 of 10 updated replicas are available...
-   Waiting for rollout to finish: 3 of 10 updated replicas are available...
-   Waiting for rollout to finish: 4 of 10 updated replicas are available...
-   Waiting for rollout to finish: 5 of 10 updated replicas are available...
-   Waiting for rollout to finish: 6 of 10 updated replicas are available...
-   Waiting for rollout to finish: 7 of 10 updated replicas are available...
-   Waiting for rollout to finish: 8 of 10 updated replicas are available...
-   Waiting for rollout to finish: 9 of 10 updated replicas are available...
-   deployment "hello-world" successfully rolled out
-   ```
+    ```
+    => kubectl rollout status deployment/hello-world
+    Waiting for rollout to finish: 1 of 10 updated replicas are available...
+    Waiting for rollout to finish: 2 of 10 updated replicas are available...
+    Waiting for rollout to finish: 3 of 10 updated replicas are available...
+    Waiting for rollout to finish: 4 of 10 updated replicas are available...
+    Waiting for rollout to finish: 5 of 10 updated replicas are available...
+    Waiting for rollout to finish: 6 of 10 updated replicas are available...
+    Waiting for rollout to finish: 7 of 10 updated replicas are available...
+    Waiting for rollout to finish: 8 of 10 updated replicas are available...
+    Waiting for rollout to finish: 9 of 10 updated replicas are available...
+    deployment "hello-world" successfully rolled out
+    ```
 
 5. Once the rollout has finished, ensure your pods are running by using: `kubectl get pods`.
 
    You should see output listing 10 replicas of your deployment:
 
-   ```
-   => kubectl get pods
-   NAME                          READY     STATUS    RESTARTS   AGE
-   hello-world-562211614-1tqm7   1/1       Running   0          1d
-   hello-world-562211614-1zqn4   1/1       Running   0          2m
-   hello-world-562211614-5htdz   1/1       Running   0          2m
-   hello-world-562211614-6h04h   1/1       Running   0          2m
-   hello-world-562211614-ds9hb   1/1       Running   0          2m
-   hello-world-562211614-nb5qp   1/1       Running   0          2m
-   hello-world-562211614-vtfp2   1/1       Running   0          2m
-   hello-world-562211614-vz5qw   1/1       Running   0          2m
-   hello-world-562211614-zksw3   1/1       Running   0          2m
-   hello-world-562211614-zsp0j   1/1       Running   0          2m
-   ```
+    ```
+    => kubectl get pods
+    NAME                          READY     STATUS    RESTARTS   AGE
+    hello-world-562211614-1tqm7   1/1       Running   0          1d
+    hello-world-562211614-1zqn4   1/1       Running   0          2m
+    hello-world-562211614-5htdz   1/1       Running   0          2m
+    hello-world-562211614-6h04h   1/1       Running   0          2m
+    hello-world-562211614-ds9hb   1/1       Running   0          2m
+    hello-world-562211614-nb5qp   1/1       Running   0          2m
+    hello-world-562211614-vtfp2   1/1       Running   0          2m
+    hello-world-562211614-vz5qw   1/1       Running   0          2m
+    hello-world-562211614-zksw3   1/1       Running   0          2m
+    hello-world-562211614-zsp0j   1/1       Running   0          2m
+    ```
    
 **Tip:** Another way to improve availability is to [add clusters and regions](https://cloud.ibm.com/docs/containers?topic=containers-add_workers) to your deployment, as shown in the following diagram: 
 
