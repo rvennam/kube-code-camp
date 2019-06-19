@@ -63,7 +63,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 # Create pods and services
 Now that the service is bound to the cluster, you want to expose the secret to your pod so that it can utilize the service. To do this, create a secret datastore as a part of your deployment configuration. This has been done for you in watson-deployment.yml:
 
-    ```
+    ```yml
         volumeMounts:
           - mountPath: /var/credentials
             name: apikeyvol
