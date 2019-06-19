@@ -158,6 +158,8 @@ To update:
 
 You should see something like: `Hello world from hello-world-86959dc89b-hgzs8! Great job getting the second stage up and running!`
 
+Congratulations - You just updated your app with a new version!
+
 # Check the health of apps
 
 Kubernetes uses availability checks (liveness probes) to know when to restart a container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such a state can help to make the application more available despite bugs.
@@ -175,6 +177,8 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ```
 
 2. To edit the file you need to click the pencil icon and edit the file at `exercise-3/healthcheck.yml`. You will update `<registry>/<namespace>/<unique_appname>:2` to your own value, which should look something like `de.icr.io/bmv-ibm/bmv_app:2`. Save the file.
+
+    ![](../README_images/pencil.png)
 
 3. Note the HTTP liveness probe in `healthcheck.yml` that checks the health of the container every five seconds.
 
