@@ -7,15 +7,18 @@ Containers allow you to run securely isolated applications with quotas on system
 
 ## Objectives
 
-This exercise is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
+This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
 * Understand core concepts of Kubernetes
 * Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Kubernetes Service
 * Control application deployments, while minimizing your time with infrastructure management
 * Add AI services to extend your app
-* Secure and monitor your cluster and app
+* Discover Role Based Access Controls for your Kubernetes cluster.
 
 ## Prerequisites
 * An [IBM Cloud account](https://cloud.ibm.com/registration/)
+
+## Get Started
+Feel free to continue reading for some additional information on Containers, Virtual Machines, and Kubernetes before starting t he lab. To skip the information and go directly to the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0). 
 
 ## Virtual machines
 
@@ -44,18 +47,7 @@ Traditional applications are run on native hardware. A single application does n
 
 Containers allow you to share the host OS. This reduces duplication while still providing the isolation. Containers also allow you to drop unneeded files such as system libraries and binaries to save space and reduce your attack surface. If SSHD or LIBC are not installed, they cannot be exploited.
 
-## Kubernetes and containers: an overview
-
-Let's talk about Kubernetes orchestration for containers before we build an application on it. We need to understand the following facts about it:
-
-* What is Kubernetes, exactly?
-* How was Kubernetes created?
-* Kubernetes architecture
-* Kubernetes resource model
-* Kubernetes at IBM
-* Let's get started
-
-### What is Kubernetes?
+## What is Kubernetes?
 
 Now that we know what containers are, let's define what Kubernetes is. Kubernetes is a container orchestrator to provision, manage, and scale applications. In other words, Kubernetes allows you to manage the lifecycle of containerized applications within a cluster of nodes (which are a collection of worker machines, for example, VMs, physical machines etc.).
 
@@ -73,7 +65,7 @@ Google wanted to open source their knowledge of creating and running the interna
 
 Main entry point for the kubernetes project is at [https://kubernetes.io/](https://kubernetes.io/) and the source code can be found at [https://github.com/kubernetes](https://github.com/kubernetes).
 
-### Kubernetes architecture
+## Kubernetes architecture
 
 At its core, Kubernetes is a data store (etcd). The declarative model is stored in the data store as objects, that means when you say I want 5 instances of a container then that request is stored into the data store. This information change is watched and delegated to Controllers to take action. Controllers then react to the model and attempt to take action to achieve the desired state. The power of Kubernetes is in its simplistic model.
 
@@ -81,7 +73,7 @@ As shown, API server is a simple HTTP server handling create/read/update/delete(
 
 ![architecture diagram](/images/kubernetes_arch.png)
 
-### Kubernetes resource model
+## Kubernetes resource model
 
 Kubernetes Infrastructure defines a resource for every purpose. Each resource is monitored and processed by a controller. When you define your application, it contains a collection of these resources. This collection will then be read by Controllers to build your application's actual backing instances. Some of resources that you may work with are listed below for your reference, for a full list you should go to [https://kubernetes.io/docs/concepts/](https://kubernetes.io/docs/concepts/). In this class we will only use a few of them, like Pod, Deployment, etc.
 
@@ -108,7 +100,7 @@ Kubernetes Infrastructure defines a resource for every purpose. Each resource is
 
 Kubernetes does not have the concept of an application. It has simple building blocks that you are required to compose. Kubernetes is a cloud native platform where the internal resource model is the same as the end user resource model.
 
-### Key resources
+## Key resources
 
 A Pod is the smallest object model that you can create and run. You can add labels to a pod to identify a subset to run operations on. When you are ready to scale your application you can use the label to tell Kubernetes which Pod you need to scale. A Pod typically represent a process in your cluster. Pods contain at least one container that runs the job and additionally may have other containers in it called sidecars for monitoring, logging, etc. Essentially a Pod is a group of containers.
 
@@ -121,7 +113,7 @@ The user directly manipulates resources via yaml:
 
 Kubernetes provides us with a client interface through ‘kubectl’. Kubectl commands allow you to manage your applications, manage cluster and cluster resources, by modifying the model in the data store.
 
-### Kubernetes application deployment workflow
+## Kubernetes application deployment workflow
 
 ![deployment workflow](/images/app_deploy_workflow.png)
 
@@ -133,17 +125,5 @@ Kubernetes provides us with a client interface through ‘kubectl’. Kubectl co
 6. Kubelet on a node detects a pod with an assignment to itself, and deploys the requested containers via the container runtime (e.g. Docker). Each Node watches the storage to see what pods it is assigned to run. It takes necessary actions on resource assigned to it like create/delete Pods.
 7. Kubeproxy manages network traffic for the pods – including service discovery and load-balancing. Kubeproxy is responsible for communication between Pods that want to interact.
 
-
-### Lab information
-
-IBM Cloud provides the capability to run applications in containers on Kubernetes. The IBM Cloud Kubernetes Service runs Kubernetes clusters which deliver the following:
-
-* Powerful tools
-* Intuitive user experience
-* Built-in security and isolation to enable rapid delivery of secure applications
-* Cloud services including cognitive capabilities from Watson
-* Capability to manage dedicated cluster resources for both stateless applications and stateful workloads
-
-
-### Get Started
-To get started with the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0)
+## Get Started
+To get started with the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0).
