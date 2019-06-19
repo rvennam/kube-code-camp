@@ -2,7 +2,7 @@
 In this section, you will create your own IBM Cloud account, and then get access to a IBM Cloud Lab account which contains pre-provisioned clusters. Each lab attendee will be granted access to one cluster.
 
 ## Create an IBM Cloud Account and Get Access to Your Cluster
-1. Create your own [IBM Cloud account](TODO:VCPIURL).
+1. Create your own [IBM Cloud account](https://ibm.biz/Bdzybn).
 2. After the email verification, confirm by logging in to https://cloud.ibm.com
 3. Go to the [Get Cluster](TODO:GETCLUSTER) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `eu-fra` region.
 

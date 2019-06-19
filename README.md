@@ -15,10 +15,10 @@ This lab is an introduction to using Docker containers on Kubernetes in the IBM 
 * Discover Role Based Access Controls for your Kubernetes cluster.
 
 ## Prerequisites
-* An [IBM Cloud account](https://cloud.ibm.com/registration/)
+* An [IBM Cloud account](https://ibm.biz/Bdzybn)
 
 ## Get Started
-Feel free to continue reading for some additional information on Containers, Virtual Machines, and Kubernetes before starting t he lab. To skip the information and go directly to the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0). 
+Feel free to continue reading for some additional information on Containers, Virtual Machines, and Kubernetes before starting the lab. To skip the information and go directly to the lab, go to [exercise 0](https://github.com/beemarie/kube-code-camp/tree/master/exercise-0). 
 
 ## Kubernetes and Containers: An Overview
 ### Virtual machines
