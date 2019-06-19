@@ -33,7 +33,13 @@ You'll find that both requests will fail as we have not provided these accounts 
 
 ## Create our RBAC
 
-Now we'll create a ClusterRole as well as some bindings in order to authorize our service accounts to manage deployments.
+In Kubernetes, a `Role` can only be used to grant access to resources within a single namespace. A `ClusterRole` can be used to grant the same permissions as a `Role`, but because they are cluster-scoped, they can also be used to grant access to cluster-scoped resources (like nodes), non-resource endpoints (like “/healthz”), and namespaced resources (like pods) across all namespaces. 
+
+A `RoleBinding` grants the permissions defined in a role to a user or set of users.
+
+Source and additional reading: https://kubernetes.io/docs/reference/access-authn-authz/rbac/. 
+
+Create a ClusterRole as well as some bindings in order to authorize our service accounts to manage deployments.
 
 ```
 cat <<EOF | kubectl apply -f -
