@@ -7,4 +7,4 @@
     * [Set up and deploy your first application](exercise-2/README.md)
     * [Scale and update apps](exercise-3/README.md)
     * [Deploy an application with IBM Watson services](exercise-4/README.md)
-    * [Role Based Access Controll (RBAC)](exercise-5/README.md)
+    * [Role Based Access Control (RBAC)](exercise-5/README.md)
