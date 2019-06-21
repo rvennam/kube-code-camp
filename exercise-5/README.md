@@ -1,4 +1,4 @@
-# Role Based Access Controll (RBAC)
+# Role Based Access Control (RBAC)
 
 In this part of our lab we'll be learning a little bit about how RBAC works. To accomplish this we'll practice creating a few RBAC policies and reviewing what the imapact is of the policies we create.  IKS also makes available very powerful IBM Cloud IAM integration with RBAC, but here we'll get our hands dirty by implementing it manually.
 

@@ -17,7 +17,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
     kubectl create secret generic apikey --from-file=./watson/credentials.json 
     ```
 
-# Build the Watson images
+## Build the Watson images
 
 1. Create a unique application name for the watson app you're about to build. Something like `bmv-watson-1111`
 
@@ -60,7 +60,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
               # ex: image: "de.icr.io/bmv-ibm/bmv-watson-talk-1234"
     ```
 
-# Create pods and services
+## Create pods and services
 Now that the service is bound to the cluster, you want to expose the secret to your pod so that it can utilize the service. To do this, create a secret datastore as a part of your deployment configuration. This has been done for you in watson-deployment.yml:
 
   ```yml
@@ -86,7 +86,7 @@ Now that the service is bound to the cluster, you want to expose the secret to y
    kubectl get pods
    ```
 
-# Putting it all together - Run the application and service
+## Putting it all together - Run the application and service
 
 By this time you have created pods, services, and volumes for this lab.
 

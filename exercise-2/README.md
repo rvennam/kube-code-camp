@@ -2,7 +2,7 @@
 
 Learn how to push an image of an application to IBM Cloud Container Registry and deploy a basic application to a cluster.
 
-# Push an image to IBM Cloud Container Registry
+## Push an image to IBM Cloud Container Registry
 
 To push an image, we first must have an image to push. We have
 prepared several `Dockerfile`s in this repository that will create the
@@ -62,7 +62,7 @@ which your cluster has access.
 
 You are now ready to use Kubernetes to deploy the hello-world application.
 
-# Deploy your application
+## Deploy your application
 
 1. Start by running your image as a deployment: 
 

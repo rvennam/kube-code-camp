@@ -1,6 +1,6 @@
-## Accessing your Kubernetes Cluster
+# Accessing your Kubernetes Cluster
 
-### Connect to your cluster using the Cloud Shell
+## Connect to your cluster using the Cloud Shell
 
 For this lab, a hosted shell is provided for you with all the necessary tools installed. Use this web shell to perform the tasks in this lab.
 
@@ -10,7 +10,7 @@ For this lab, a hosted shell is provided for you with all the necessary tools in
 
 ![](../README_images/cloudshell.png)
 
-### Access your cluster
+## Access your cluster
 Learn how to set the context for your cluster in your CLI. Every time you log in to the CLI to work with the cluster, you must run this command to set a path to the cluster's configuration file as a session variable. The Kubernetes CLI uses this variable to find a local configuration file and certificates that are necessary to connect with the cluster in IBM Cloud.
 
 1. List the available clusters.

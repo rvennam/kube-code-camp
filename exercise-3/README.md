@@ -4,7 +4,7 @@ In this exercise, understand how to update the number of replicas a deployment h
 
 For this exercise, you need a running deployment with a single replica.
 
-# Scale apps with replicas
+## Scale apps with replicas
 
 A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica is a copy of a pod that already contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
@@ -65,7 +65,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 ![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
 
-# Update Apps
+## Update Apps
 
 Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
@@ -160,7 +160,7 @@ You should see something like: `Hello world from hello-world-86959dc89b-hgzs8! G
 
 Congratulations - You just updated your app with a new version!
 
-# Check the health of apps
+## Check the health of apps
 
 Kubernetes uses availability checks (liveness probes) to know when to restart a container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such a state can help to make the application more available despite bugs.
 
@@ -215,7 +215,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
     For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
 
-# Launch the Kubernetes Dashboard
+## Launch the Kubernetes Dashboard
 
 1. Go back to your clusters detail page in the IBM Cloud UI. If you don't still have this open, you can go the [clusters](https://cloud.ibm.com/kubernetes/clusters/) page and select your cluster.
 
@@ -224,7 +224,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ![](../README_images/kube-dashboard.png)
 
 
-# Explore the Kubernetes Dashboard
+## Explore the Kubernetes Dashboard
 
 1. In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. 
 
@@ -245,7 +245,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     kubectl rollout status deployment/hello-world
     ```
 
-# Cleanup
+## Cleanup
 1. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
 
     ```
