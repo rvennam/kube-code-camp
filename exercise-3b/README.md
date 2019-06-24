@@ -1,4 +1,4 @@
-# Scale App with .yaml
+# Create and Scale App with .yaml
 
 In this lab you'll learn how to deploy the same hello world application we deployed in the previous labs, however, instead of using the kubectl command line helper functions we'll be deploying the application using configuration files. The configuration file mechanism allows you to have more fine-grained control over all of resources being created within the Kubernetes cluster.
 
