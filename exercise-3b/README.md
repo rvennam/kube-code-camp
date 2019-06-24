@@ -107,7 +107,7 @@ The above configuration creates a Service resource named hello-world. A Service 
   kubectl get pods
   ```
 
-1. Let's tewst the hello-world app with curl:
+1. Let's test the hello-world app with curl:
   ```
   curl $PUBLICIP:$NODEPORT
   ```
