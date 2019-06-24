@@ -71,7 +71,7 @@ The above configuration file create a deployment object named 'hello-world' with
 
   This will retrieve the latest configuration for the Deployment from the Kubernetes server and then load it into an editor for you. You'll notice that there are a lot more fields in this version than the original yaml file we used. This is because it contains all of the properties about the Deployment that Kubernetes knows about, not just the ones we chose to specify when we create it. Also notice that it now contains the status section mentioned previously.
 
-1. Try editing `replicas` to 4, under the `spec` section.
+1. Try editing `replicas` to 4, under the `spec` section, near the top. This editor uses `vi` style commands. You can use `i` to insert, `w` to write, and `q` to quit.
 
 1. If you run `kubectl get pods`, you should see that there are now 4 pods.
 
