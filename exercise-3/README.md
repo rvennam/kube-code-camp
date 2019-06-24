@@ -72,6 +72,7 @@ Kubernetes allows you to use a rollout to update an app deployment with a new Do
 In the previous lab, we created an image with a `1` tag. Let's make a version of the image that includes new content and use a `2` tag. This exercise also contains a `Dockerfile`. Let's build and push it up to our image registry.
 
 To update:
+
 1. Change directories to exercise 3:
     ```
     cd ../exercise-3/
@@ -84,7 +85,7 @@ To update:
     ```
 
 
-3. Using `kubectl`, you can now update your deployment to use the
+1. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing
    resources with the `set` subcommand. We can use it to change the
    image being used.
@@ -95,7 +96,7 @@ To update:
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
-4. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
+1. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
 
    ```
    => kubectl rollout status deployment/hello-world
@@ -150,7 +151,7 @@ To update:
    hello-world-3254495675   10        10        10        1m
    ```
 
-5. Confirm your new code is active:
+1. Confirm your new code is active:
 
     ```
     curl $PUBLICIP:$NODEPORT
