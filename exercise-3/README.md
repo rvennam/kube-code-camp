@@ -28,6 +28,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
    The rollout might occur so quickly that the following messages might _not_ display:
 
+    Expected Output:
     ```
     => kubectl rollout status deployment/hello-world
     Waiting for rollout to finish: 1 of 10 updated replicas are available...
@@ -46,6 +47,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
    You should see output listing 10 replicas of your deployment:
 
+    Expected Output:
     ```
     => kubectl get pods
     NAME                          READY     STATUS    RESTARTS   AGE
@@ -98,6 +100,7 @@ To update:
 
 1. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
 
+  Expected Output:
    ```
    => kubectl rollout status deployment/hello-world
    Waiting for rollout to finish: 2 out of 10 new replicas have been updated...

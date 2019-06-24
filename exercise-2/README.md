@@ -75,7 +75,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
    You should see output similar to the following:
    
    ```
-   => kubectl get pods
+   kubectl get pods
    NAME                          READY     STATUS              RESTARTS   AGE
    hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
    ```
