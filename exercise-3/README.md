@@ -177,7 +177,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     echo $MYPROJECT
     ```
 
-2. To edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3/healthcheck.yml`. You will update `<registry>/<namespace>/<unique_appname>:2` to your own value, which should look something like `de.icr.io/bmv-ibm/bmv_app:2`. Save the file.
+2. To edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3/healthcheck.yml`. You will update `<registry>/<namespace>/<unique_appname>:2` to your own value, which should look something like `de.icr.io/code-camp/bmv_app:2`. Save the file.
 
     ![](../README_images/pencil.png)
 
