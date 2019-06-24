@@ -39,14 +39,14 @@ hello-world-deployment.yaml
               containerPort: 3000
       ```
 
-The above configuration file create a deployment object named 'hello-world' with a pod containing a single container running the image $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1. Also the configuration specifies replicas set to 3 and Kubernetes tries to make sure that at least three active pods are running at all times.
+The above configuration file create a deployment object named 'hello-world' with a pod containing a single container running the image. Also the configuration specifies replicas set to 3 and Kubernetes tries to make sure that at least three active pods are running at all times.
 
 1. Change directories to exercise 3b.
   ```
-  cd exercise-3b
+  cd ../exercise-3b
   ```
 
-1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to your own value, which should look something like `de.icr.io/code-camp/bmv_app:1`. Save the file.
+1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to the `de.icr.io` registry, the `code-camp` namespace, and the unique appname you selected earlier. The line should look something like `de.icr.io/code-camp/bmv-app-123:1`. Save the file.
 
 1. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
 
