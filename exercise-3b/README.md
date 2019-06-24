@@ -118,12 +118,10 @@ The above configuration creates a Service resource named hello-world. A Service 
   kubectl get pods
   ```
 
-1. Let's test the hello-world app using a browser of your choice using the url <your-cluster-ip>:<node-port>
+1. Let's test the hello-world app:
 
-Remember, to get the nodeport and public-ip use:
   ```
-  kubectl describe service hello-world
-  ibmcloud ks workers $MYCLUSTER
+  curl $PUBLICIP:30073
   ```
 
 ## Clean Up
