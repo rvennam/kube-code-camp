@@ -43,7 +43,11 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
     deployment "hello-world" successfully rolled out
     ```
 
-5. Once the rollout has finished, ensure your pods are running by using: `kubectl get pods`.
+5. Once the rollout has finished, ensure your pods are running by using: 
+
+    ```
+    kubectl get pods
+    ```
 
    You should see output listing 10 replicas of your deployment:
 
@@ -209,7 +213,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     kubectl get pods
     ```
 
-7. Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
+7. Open a browser and check out the app. To form the URL, combine the public IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
 
     ```
     ibmcloud ks workers $MYCLUSTER
@@ -260,13 +264,6 @@ In this example, we have defined a HTTP liveness probe to check health of the co
     ```
     kubectl delete deployment hello-world
     kubectl delete service hello-world
-    ```
-
-2. Finally, let's clean up the images from the registry.
-
-    ```
-    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
-    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
 
 Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! You also learned how to undo a rollout and how to delete resources using a .yml file. Exercise 3 is now complete.

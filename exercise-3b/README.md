@@ -107,11 +107,6 @@ The above configuration creates a Service resource named hello-world. A Service 
   kubectl get pods
   ```
 
-1. Let's test the hello-world app with curl:
-  ```
-  curl $PUBLICIP:$NODEPORT
-  ```
-
 1. Let's test the hello-world app using a browser of your choice using the url <your-cluster-ip>:<node-port>
 
 Remember, to get the nodeport and public-ip use:
@@ -120,10 +115,17 @@ Remember, to get the nodeport and public-ip use:
   ibmcloud ks workers $MYCLUSTER
   ```
 
-1. Let's also clean up the hello-world deployment and service we created in the previous lab.
+1. Let's also clean up the hello-world deployment and service we just created.
   ```
   kubectl delete -f hello-world-deployment.yml
   kubectl delete -f hello-world-service.yml
   ```
+
+2. Finally, let's clean up the images from the registry.
+
+    ```
+    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
+    ```
 
 Continue on to [Exercise 4](../exercise-4/README.md)
