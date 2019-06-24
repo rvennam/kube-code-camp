@@ -2,7 +2,7 @@
 
 In this lab you'll learn how to deploy the same hello world application we deployed in the previous labs, however, instead of using the kubectl command line helper functions we'll be deploying the application using configuration files. The configuration file mechanism allows you to have more fine-grained control over all of resources being created within the Kubernetes cluster.
 
-# Scale apps
+## Scale apps
 
 Kubernetes can deploy an individual pod to run an application but when you need to scale it to handle a large number of requests a `Deployment` is the resource you want to use. A Deployment manages a collection of similar pods. When you ask for a specific number of replicas the Kubernetes Deployment Controller will attempt to maintain that number of replicas at all times.
 
@@ -61,7 +61,9 @@ The above configuration file create a deployment object named 'hello-world' with
   kubectl get pods -l app=hello-world
   ```
 
-3. When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
+## Edit Configuration
+
+1. When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
 
   ```
   kubectl edit deployment hello-world
@@ -69,9 +71,9 @@ The above configuration file create a deployment object named 'hello-world' with
 
   This will retrieve the latest configuration for the Deployment from the Kubernetes server and then load it into an editor for you. You'll notice that there are a lot more fields in this version than the original yaml file we used. This is because it contains all of the properties about the Deployment that Kubernetes knows about, not just the ones we chose to specify when we create it. Also notice that it now contains the status section mentioned previously.
 
-4. Try editing `replicas` to 4, under the `spec` section.
+1. Try editing `replicas` to 4, under the `spec` section.
 
-5. If you run `kubectl get pods`, you should see that there are now 4 pods.
+1. If you run `kubectl get pods`, you should see that there are now 4 pods.
 
 You can also edit the deployment file we used to create the Deployment to make changes. You should use the following command to make the change effective when you edit the deployment locally.
 
@@ -80,9 +82,11 @@ You can also edit the deployment file we used to create the Deployment to make c
   ```
 This will ask Kubernetes to "diff" our yaml file with the current state of the Deployment and apply just those changes.
 
+## Create a Service
+
 We can now define a Service object to expose the deployment to external clients.
 
-6. We can now define a Service object to expose the deployment to external clients.
+1. We can now define a Service object to expose the deployment to external clients.
   ```
   apiVersion: v1
   kind: Service
@@ -118,6 +122,8 @@ Remember, to get the nodeport and public-ip use:
   kubectl describe service hello-world
   ibmcloud ks workers $MYCLUSTER
   ```
+
+## Clean Up
 
 1. Let's also clean up the hello-world deployment and service we just created.
   ```
