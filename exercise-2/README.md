@@ -29,7 +29,7 @@ which your cluster has access.
 4. Ensure the region is set for the IBM Cloud Container Registry:
 
     ```
-    ibmcloud cr region-set global
+    ibmcloud cr region-set eu-de
     ```
 
 3. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
