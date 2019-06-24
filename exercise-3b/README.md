@@ -36,7 +36,7 @@ hello-world-deployment.yaml
             image: <registry>/<namespace>/<unique_appname>:1
             ports:
             - name: http-server
-              containerPort: 3000
+              containerPort: 8080
       ```
 
 The above configuration file create a deployment object named 'hello-world' with a pod containing a single container running the image. Also the configuration specifies replicas set to 3 and Kubernetes tries to make sure that at least three active pods are running at all times.
@@ -82,6 +82,8 @@ The above configuration file create a deployment object named 'hello-world' with
     ```
   This will ask Kubernetes to "diff" our yaml file with the current state of the Deployment and apply just those changes.
 
+1. Run `kubectl get pods` to see that there are now 3 pods.
+
 ## Create a Service
 
 We can now define a Service object to expose the deployment to external clients.
@@ -95,12 +97,13 @@ We can now define a Service object to expose the deployment to external clients.
     labels:
       app: hello-world
   spec:
-    ports:
-    - port: 3000
-      targetPort: http-server
     selector:
       app: hello-world
-    type: LoadBalancer
+    type: NodePort
+    ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 30073      
     ```
 
 The above configuration creates a Service resource named hello-world. A Service can be used to create a network path for incoming traffic to your running application. In this case, we are setting up a route from port 3000 on the cluster to the "http-server" port on our app, which is port 3000 per the Deployment container spec.

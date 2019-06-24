@@ -19,4 +19,4 @@ spec:
         image: <registry>/<namespace>/<unique_appname>:1
         ports:
         - name: http-server
-          containerPort: 3000
+          containerPort: 8080
