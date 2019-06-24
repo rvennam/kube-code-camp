@@ -51,7 +51,7 @@ The above configuration file create a deployment object named 'hello-world' with
 1. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
 
   ```
-  kubectl create -f hello-world-deployment.yaml
+  kubectl create -f hello-world-deployment.yml
   deployment "hello-world" created  
   ```
 
