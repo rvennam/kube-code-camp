@@ -61,17 +61,17 @@ The above configuration file create a deployment object named 'hello-world' with
   kubectl get pods -l app=hello-world
   ```
 
-When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
+3. When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
 
   ```
   kubectl edit deployment hello-world
   ```
 
-This will retrieve the latest configuration for the Deployment from the Kubernetes server and then load it into an editor for you. You'll notice that there are a lot more fields in this version than the original yaml file we used. This is because it contains all of the properties about the Deployment that Kubernetes knows about, not just the ones we chose to specify when we create it. Also notice that it now contains the status section mentioned previously.
+  This will retrieve the latest configuration for the Deployment from the Kubernetes server and then load it into an editor for you. You'll notice that there are a lot more fields in this version than the original yaml file we used. This is because it contains all of the properties about the Deployment that Kubernetes knows about, not just the ones we chose to specify when we create it. Also notice that it now contains the status section mentioned previously.
 
-1. Try editing `replicas` to 4, under the `spec` section.
+4. Try editing `replicas` to 4, under the `spec` section.
 
-1. If you run `kubectl get pods`, you should see that there are now 4 pods.
+5. If you run `kubectl get pods`, you should see that there are now 4 pods.
 
 You can also edit the deployment file we used to create the Deployment to make changes. You should use the following command to make the change effective when you edit the deployment locally.
 
@@ -82,7 +82,7 @@ This will ask Kubernetes to "diff" our yaml file with the current state of the D
 
 We can now define a Service object to expose the deployment to external clients.
 
-1. We can now define a Service object to expose the deployment to external clients.
+6. We can now define a Service object to expose the deployment to external clients.
   ```
   apiVersion: v1
   kind: Service
