@@ -1,4 +1,4 @@
-# Scale App with .yaml files
+# Scale App with .yaml
 
 In this lab you'll learn how to deploy the same hello world application we deployed in the previous labs, however, instead of using the kubectl command line helper functions we'll be deploying the application using configuration files. The configuration file mechanism allows you to have more fine-grained control over all of resources being created within the Kubernetes cluster.
 
@@ -125,3 +125,5 @@ Remember, to get the nodeport and public-ip use:
   kubectl delete -f hello-world-deployment.yml
   kubectl delete -f hello-world-service.yml
   ```
+
+Continue on to [Exercise 4](../exercise-4/README.md)

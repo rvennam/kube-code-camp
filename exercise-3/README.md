@@ -268,4 +268,4 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
 Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! You also learned how to undo a rollout and how to delete resources using a .yml file. Exercise 3 is now complete.
 
-Continue on to [Exercise 4](../exercise-4/README.md)
+Continue on to [Exercise 3b](../exercise-3b/README.md)
