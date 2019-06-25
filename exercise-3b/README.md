@@ -135,9 +135,9 @@ The above configuration creates a Service resource named hello-world. A Service 
 
 2. Finally, let's clean up the images from the registry.
 
-    ```
-    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
-    ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
-    ```
+  ```
+  ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+  ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
+  ```
 
 Continue on to [Exercise 4](../exercise-4/README.md)
