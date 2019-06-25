@@ -77,9 +77,9 @@ The above configuration file create a deployment object named 'hello-world' with
 
   You can also edit the deployment file we used to create the Deployment to make changes. You should use the following command to make the change effective when you edit the deployment locally. Run the `kubectl apply` command to set the replicas back to 3.
 
-    ```
-    kubectl apply -f hello-world-deployment.yml
-    ```
+  ```
+  kubectl apply -f hello-world-deployment.yml
+  ```
   This will ask Kubernetes to "diff" our yaml file with the current state of the Deployment and apply just those changes.
 
 1. Run `kubectl get pods` to see that there are now 3 pods.
