@@ -87,7 +87,7 @@ To update:
 1. Build the new docker image with a `2` tag, and push it to the IBM Cloud Container Registry using the `ibmcloud cr build` command:
 
     ```
-    ibmcloud cr build . --tag $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    ibmcloud cr build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
 
