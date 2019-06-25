@@ -89,6 +89,7 @@ The above configuration file create a deployment object named 'hello-world' with
 We can now define a Service object to expose the deployment to external clients.
 
 1. We can now define a Service object to expose the deployment to external clients.
+
   ```
   apiVersion: v1
   kind: Service
