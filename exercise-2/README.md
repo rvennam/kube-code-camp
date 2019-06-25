@@ -38,7 +38,7 @@ which your cluster has access.
     ibmcloud cr login
     ```
 
-5. Select a unique name for your project. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
+5. Select a unique name for your project. **NOTE: This unique name must be all lowercase**. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
     ```
     export MYPROJECT=<UNIQUE_PROJECT_NAME>
     ```
