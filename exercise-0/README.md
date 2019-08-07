@@ -4,7 +4,7 @@ In this section, you will create your own IBM Cloud account, and then get access
 ## Login with your IBM Cloud Account and Get Access to Your Cluster
 1. You should already have a federated IBM Cloud account using your company email address, confirm by logging in to https://cloud.ibm.com
 2. If you do not have an account, you could create your own [IBM Cloud account](https://ibm.biz/Bdz4v3).
-3. Go to the [Grant Cluster](http://grant-cluster-iks.mybluemix.net) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `Frankfurt (eu-de)` region.
+3. Go to the [Grant Cluster](http://grant-cluster-iks.mybluemix.net) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor, and select the `US South (us-south)` region.
 
     ![](../README_images/get-clusters.png)
 
