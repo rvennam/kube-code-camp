@@ -29,7 +29,7 @@ which your cluster has access.
 4. Ensure the region is set for the IBM Cloud Container Registry:
 
     ```
-    ibmcloud cr region-set eu-de
+    ibmcloud cr region-set us-south
     ```
 
 3. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
@@ -46,7 +46,7 @@ which your cluster has access.
 6. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
     ```
     export MYNAMESPACE=code-camp
-    export MYREGISTRY=de.icr.io
+    export MYREGISTRY=us.icr.io
     ```
    
 7. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
