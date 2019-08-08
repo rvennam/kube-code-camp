@@ -17,7 +17,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
     kubectl create secret generic apikey --from-file=./watson/credentials.json 
     ```
 
-## Build the Watson images
+## Build the image for the Watson Text to Speech application
 
 1. Create a unique application name for the watson app you're about to build. Something like `bmv-watson-1111`
 
@@ -31,37 +31,19 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
    ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYWATSONAPP ./watson
    ```
 
-4. Create a unique application name for the watson-talk app you're about to create. Something like `bmv-watson-talk-1111`
-
-    ```
-    export MYTALKAPP=<your_unique_talk_app_name>
-    ```
-4. Build the `watson-talk` image, and push it to the IBM Cloud Container Registry using the `ibmcloud cr build` command.
-
-   ```
-   ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYTALKAPP ./watson-talk
-   ```
-
-6. In watson-deployment.yml, update the image tag with the registry path to the two images you just created in the following two sections. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
+3. In watson-deployment.yml, update the image tag with the registry path to the images you just created. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
 
     ```yml
-        spec:
-          containers:
-            - name: watson
-              image: "<registry>/<namespace>/<watsonapp>" 
-              # change to the path of the watson image you just pushed
-              # ex: image: "de.icr.io/code-camp/bmv-watson-1234"
-    ...
-        spec:
-          containers:
-            - name: watson-talk
-              image: "<registry>/<namespace>/<talkapp>" 
-              # change to the path of the watson-talk image you just pushed
-              # ex: image: "de.icr.io/code-camp/bmv-watson-talk-1234"
+    spec:
+      containers:
+        - name: watson-text-to-speech
+          image: "us.icr.io/<namespace>/<appname>" # edit here!
+          # change to the path of the watson image you just built and pushed
+          # ex: image: "us.icr.io/code-camp/bmv-watson-1234"
     ```
 
-## Create pods and services
-Now that the service is bound to the cluster, you want to expose the secret to your pod so that it can utilize the service. To do this, create a secret datastore as a part of your deployment configuration. This has been done for you in watson-deployment.yml:
+## Share the Watson API Credentials with your application
+Take a close look at the watson-deployment.yaml and look for the volumeMounts and volumes section. This is how we tell Kubernetes to share the secret we created with the container. It writes the contents of the secret into /var/credentials of the container.
 
   ```yml
   volumeMounts:
@@ -73,23 +55,16 @@ Now that the service is bound to the cluster, you want to expose the secret to y
       secret:
         secretName: apikey
   ```
+There is nothing you need to do for this section.
 
-1. Create the deployment and services making up your application using the .yml file.
+## Create deployments, pods and services
+The yaml file has everything we need defined. We simply give this file to kubectl to apply the configuration.
 
-   ```
-   kubectl create -f watson-deployment.yml
-   ```
-
-2. Verify the pods have been created:
+1. Create the deployment, pods and services making up your application using the .yml file.
 
    ```
-   kubectl get pods
+   kubectl apply -f watson-deployment.yml
    ```
-
-## Putting it all together - Run the application and service
-
-By this time you have created pods, services, and volumes for this lab.
-
 1. You can open the Kubernetes dashboard and explore all the new objects created or use the following commands.
 
    ```
@@ -98,22 +73,49 @@ By this time you have created pods, services, and volumes for this lab.
    kubectl get services
    ```
 
-2. Get the public IP for one of the worker nodes to access the application:
+## Expose this application to the public internet using the IKS Ingress ALB
+
+Standard clusters on IKS come with an IBM-provided domain. This gives you a better option to expose applications with a proper URL and on standard HTTP/S ports. In this section, we'll use Ingress to set up the cluster inbound connection to the service.
+![](https://cloud.ibm.com/docs-content/v1/content/4fb01670d36e2a82c7b5e9c5ff5a93068dbf2826/tutorials/images/solution2/Ingress.png)
+1. Get the Ingress information for your cluster
 
     ```
-    ibmcloud ks workers $MYCLUSTER
+    ibmcloud ks cluster-get $MYCLUSTER
     ```
-
-3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output.
- 
-   ```http://<public-IP>:30080/analyze/"Today is a beautiful day"```
-
-If you can see JSON output on your screen, congratulations! You should see high percentages of `joy` and low percentages of emotions like `anger` or `disgust`. Try analyzing some different sentences to play around with the Tone Analyzer service. You are now done with this lab!
-
+    Example output:
+    ```
+    Name:                           mydemocluster
+    ID:                             f4f207d35a2b4fe98998d7ba0d
+    State:                          normal
+    Created:                        2018-12-06T16:11:59+0000
+    Location:                       dal13
+    ...
+    Ingress Subdomain:              mydemocluster.us-south.containers.appdomain.cloud
+    Ingress Secret:                 mydemocluster
+    ...
+    ```
+2. Note the `Ingress Subdomain` and `Ingress Secret` values. You'll need this in the next step.
+3. In `watson-ingress.yaml`, update the three locations marked <Ingress Subdomain> and <Ingress Secret>. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
+    ```
+    spec:
+      tls:
+      - hosts:
+        - watson.<Ingress Subdomain>
+        secretName: <Ingress Secret>
+      rules:
+      - host: watson.<Ingress Subdomain>
+      ```
+4. In a new browser tab, go to your application! The URL will be `https://watson.<Ingress Subdomain>`
+    ![](../README_Images/watson-tts.png)
 4. Clean up the deployment, pods, and services you created:
 
     ```
     kubectl delete -f watson-deployment.yml
+    ```
+ 4. Clean up the Ingress you created:
+
+    ```
+    kubectl delete -f watson-ingress.yml
     ```
 
 Continue on to [Exercise 5](../exercise-5/README.md)
