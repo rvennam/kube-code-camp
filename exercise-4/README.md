@@ -11,7 +11,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `kube-code-camp/exercise-4/watson/credentials.json` and then save the file. The apikey required for this section of the lab was provided for you as a part of the grant-clusters app. Update the apikey value now, and save the file.
 
-3. Create a Kubernetes Secret based on the credentials stored in this file.
+3. Create a Kubernetes Secret from on the credentials stored in this file.
 
     ```
     kubectl create secret generic apikey --from-file=./watson/credentials.json 
@@ -95,7 +95,7 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     ...
     ```
 2. Note the `Ingress Subdomain` and `Ingress Secret` values. You'll need this in the next step.
-3. In `watson-ingress.yaml`, update the three locations marked `<Ingress Subdomain>` and `<Ingress Secret>`. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
+3. In `watson-ingress.yaml`, update the three locations marked `<Ingress Subdomain>` and `<Ingress Secret>`. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-ingress.yml`. Remember to save once you've edited it.
     ```
     spec:
       tls:
@@ -107,7 +107,8 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
       ```
 4. In a new browser tab, go to your application! The URL will be `https://watson.<Ingress Subdomain>`
 
-    ![](../README_kmages/watson-tts.png)
+    ![](../README_images/watson-tts.png)
+    
 4. Clean up the deployment, pods, and services you created:
 
     ```
