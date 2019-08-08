@@ -16,14 +16,18 @@ Create a new toolchain from a template. This template provides you with a privat
 10. Confirm that your cluster is selected.
 11. Click `Create`
 
-
+![](../README_images/toolchain-home.png)
 ## View your code and pipeline
 The pipeline takes a few minutes to build and deploy your application. While that's happening, check out all the various steps.
+
 1. Click on `Git` tile to view your private git repository. This is where your application source code will live.
+   ![](../README_images/toolchain-git.png)
 2. Click the Back button in your browser and select `Delivery Pipeline`
 3. These tiles represent the various stages of your build and deploy pipeline. Click on gear icon and then `Configure Stage` to see what each stage is doing.
 4. Click on `View logs and history` on each stage to view the progress!
 5. When the DEPLOY stage is complete, click on `View logs and history` and find the URL of your application at the bottom of the logs. 
+
+![](../README_images/toolchain-pipeline.png)
 
 ## Update the code
 1. Go back to the toolchains page and select the `Git` tile again
