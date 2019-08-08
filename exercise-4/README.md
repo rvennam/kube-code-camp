@@ -95,7 +95,7 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     ...
     ```
 2. Note the `Ingress Subdomain` and `Ingress Secret` values. You'll need this in the next step.
-3. In `watson-ingress.yaml`, update the three locations marked <Ingress Subdomain> and <Ingress Secret>. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
+3. In `watson-ingress.yaml`, update the three locations marked `<Ingress Subdomain>` and `<Ingress Secret>`. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
     ```
     spec:
       tls:
@@ -106,7 +106,8 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
       - host: watson.<Ingress Subdomain>
       ```
 4. In a new browser tab, go to your application! The URL will be `https://watson.<Ingress Subdomain>`
-    ![](../README_Images/watson-tts.png)
+
+    ![](../README_kmages/watson-tts.png)
 4. Clean up the deployment, pods, and services you created:
 
     ```
