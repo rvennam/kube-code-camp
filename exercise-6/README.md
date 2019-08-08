@@ -39,3 +39,4 @@ The pipeline takes a few minutes to build and deploy your application. While tha
 4. Click on `Commit Changes` 
 5. Go back to your Toolchain and click on `Delivery Pipeline` tile.
 6. You'll notice that the pipeline is automatically running. Your app in Kubernetes should be updated in just a few moments!
+   ![](../README_images/toolchain-helloworld.png)
