@@ -110,7 +110,9 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
       rules:
       - host: watson.<Ingress Subdomain>
       ```
+    
     ![](../README_images/watson-ingress.png)
+    
 4. Apply this yaml to your cluster
     ```
     kubectl apply -f watson-ingress.yaml
