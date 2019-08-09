@@ -39,12 +39,13 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     ibmcloud ks cluster-config $MYCLUSTER
     ```
 
-5. Copy and paste the output command from the previous step to set the `KUBECONFIG` environment variable and configure your CLI to run `kubectl` commands against your cluster.
+5. The previous command should output an export command. Copy this export line and paste it in to the prompt. This will set the `KUBECONFIG` environment variable and configure your `kubectl` CLI to run commands against your cluster.
 
     Example:
     ```shell
     export KUBECONFIG=/Users...
     ```
+    ![](../README_images/copy-paste-export.png)
 
 6. Validate access to your cluster by viewing the nodes in the cluster.
 
