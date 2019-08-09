@@ -77,6 +77,7 @@ The yaml file has everything we need defined. We simply give this file to kubect
 
 Standard clusters on IKS come with an IBM-provided domain. This gives you a better option to expose applications with a proper URL and on standard HTTP/S ports. In this section, we'll use Ingress to set up the cluster inbound connection to the service.
 ![](https://cloud.ibm.com/docs-content/v1/content/4fb01670d36e2a82c7b5e9c5ff5a93068dbf2826/tutorials/images/solution2/Ingress.png)
+
 1. Get the Ingress information for your cluster
 
     ```
@@ -114,10 +115,10 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     ```
     kubectl delete -f watson-deployment.yml
     ```
- 4. Clean up the Ingress you created:
+5. Clean up the Ingress you created:
 
-    ```
-    kubectl delete -f watson-ingress.yml
-    ```
+ ```
+ kubectl delete -f watson-ingress.yml
+ ```
 
 Continue on to [Exercise 5](../exercise-5/README.md)
