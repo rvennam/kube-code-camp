@@ -4,7 +4,7 @@
 
 For this lab, a hosted shell is provided for you with all the necessary tools installed. Use this web shell to perform the tasks in this lab.
 
-1. Using Chrome or Firefox, go to the [Cloud Shell](https://cloudshell-console-ikslab.us-south.cf.cloud.ibm.com/) and login using the Login button, using the password from the instructor. You may already be logged in, if so skip to the next step.
+1. Using Chrome or Firefox, [click here to go to the Cloud Shell](https://cloudshell-console-ikslab.us-south.cf.cloud.ibm.com/) and login using the Login button, using the same password provided by the instructor. You may already be logged in, if so skip to the next step.
 2. Using the account drop down, choose the `IBM` account.
 3. Click on the Terminal icon to launch your web shell.
 
@@ -19,7 +19,7 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     ibmcloud ks clusters
     ```
 
-    > Note: If no clusters are shown, make sure you are targeting the right region with `ibmcloud ks region-set`. Choose the same region that you chose when creating the cluster on the [Get Cluster](https://get-cluster.mybluemix.net/) page.
+    > Note: If no clusters are shown, make sure you are targeting the right region with `ibmcloud ks region-set` (the region you picked in the Grant Cluster page).
 
 2. Export your cluster name as an environment variable:
 
