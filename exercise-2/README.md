@@ -59,7 +59,7 @@ which your cluster has access.
    ```
    ibmcloud cr images
    ```
-   ![](../README_images/ibmcloud-cr-images.png)
+![](../README_images/ibmcloud-cr-images.png)
 
 This is your image in the IBM Cloud Container Registry. Next, you will reference this image when deploying an application to your Kubernetes cluster.
 
