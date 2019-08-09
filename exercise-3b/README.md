@@ -1,4 +1,4 @@
-# Create and Scale App with .yaml
+# Create and Scale App with yaml
 
 In this lab you'll learn how to deploy the same hello world application we deployed in the previous labs, however, instead of using the kubectl command line helper functions we'll be deploying the application using configuration files. The configuration file mechanism allows you to have more fine-grained control over all of resources being created within the Kubernetes cluster.
 
@@ -46,13 +46,12 @@ The above configuration file create a deployment object named 'hello-world' with
   cd ../exercise-3b
   ```
 
-1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to the `de.icr.io` registry, the `code-camp` namespace, and the unique appname you selected earlier. The line should look something like `de.icr.io/code-camp/bmv-app-123:1`. Save the file.
+1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to your image name. The line should look something like `us.icr.io/code-camp/bmv-app-123:1`. Save the file.
 
 1. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
 
   ```
   kubectl create -f hello-world-deployment.yml
-  deployment "hello-world" created  
   ```
 
 2. We can then list the pods it created by listing all pods that have a label of "app" with a value of "hello-world". This matches the labels defined above in the yaml file in the spec.template.metadata.labels section.
@@ -122,7 +121,7 @@ The above configuration creates a Service resource named hello-world. A Service 
 1. Let's test the hello-world app:
 
   ```
-  curl $PUBLICIP:30073
+  curl $WORKER_IP:30073
   ```
 
 ## Clean Up
