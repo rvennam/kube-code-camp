@@ -45,7 +45,7 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     ```shell
     export KUBECONFIG=/Users...
     ```
-    ![](../README_images/copy-paste-export.png)
+![](../README_images/copy-paste-export.png)
 
 6. Validate access to your cluster by viewing the nodes in the cluster.
 
