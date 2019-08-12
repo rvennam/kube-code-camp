@@ -2,7 +2,7 @@
 
 Learn how to push an image of an application to IBM Cloud Container Registry and deploy a basic application to a cluster.
 
-## Push an image to IBM Cloud Container Registry
+## Build and Push an image to IBM Cloud Container Registry
 
 To push an image, we first must have an image to push. We have
 prepared several `Dockerfile`s in this repository that will create the
@@ -25,6 +25,9 @@ which your cluster has access.
    cd kube-code-camp/exercise-2
    ```
 
+3. Take a look at the `app.js` and the `Dockerfile` files to see the application source and the image we are about to build. To view a file you need to click the pencil icon and click on **Files** on the left. Find the files under `kube-code-camp/exercise-2`. 
+
+    ![](../README_images/pencil.png)
 
 4. Ensure the region is set for the IBM Cloud Container Registry:
 
@@ -32,29 +35,29 @@ which your cluster has access.
     ibmcloud cr region-set us-south
     ```
 
-3. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
+5. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
 
     ```
     ibmcloud cr login
     ```
 
-5. Select a unique name for your project. **NOTE: This unique name must be all lowercase**. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
+6. Select a unique name for your project. **NOTE: This unique name must be all lowercase**. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
     ```
     export MYPROJECT=<UNIQUE_PROJECT_NAME>
     ```
 
-6. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
+7. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
     ```
     export MYNAMESPACE=code-camp
     export MYREGISTRY=us.icr.io
     ```
    
-7. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
+8. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
     ```
     ibmcloud cr build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
 
-8. Verify the image is built: 
+9.  Verify the image is built: 
 
    ```
    ibmcloud cr images

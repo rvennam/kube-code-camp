@@ -19,9 +19,9 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     ibmcloud ks clusters
     ```
 
-    > Note: If no clusters are shown, make sure you are targeting the right region with `ibmcloud ks region-set` (the region you picked in the Grant Cluster page).
+    > Note: If no clusters are shown, make sure you are targeting the IBM account in the top right corner. 
 
-2. Export your cluster name as an environment variable:
+2. For convenience, export your cluster name as an environment variable.  
 
     ```shell
     export MYCLUSTER=<your_cluster_name>
@@ -33,13 +33,13 @@ Learn how to set the context for your cluster in your CLI. Every time you log in
     ibmcloud ks cluster-get $MYCLUSTER
     ```
 
-4. Download the configuration file and certificates for your cluster using the `cluster-config` command.
+4. Download the configuration file and certificates for your cluster using the `cluster-config` command. This downloads the necessary credentials for you to access your cluster.
 
     ```shell
     ibmcloud ks cluster-config $MYCLUSTER
     ```
 
-5. The previous command should output an export command. Copy this export line and paste it in to the prompt. This will set the `KUBECONFIG` environment variable and configure your `kubectl` CLI to run commands against your cluster.
+5. The previous command should output an export command. *Copy this export line and paste it in to the prompt.* This will set the `KUBECONFIG` environment variable and configure your `kubectl` CLI to run commands against your cluster.
 
     Example:
     ```shell
