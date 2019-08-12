@@ -1,6 +1,6 @@
 # Deploy an application with IBM Watson services
 
-In this lab, set up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to first lab of this course.
+In this lab, set up an application to leverage the Watson Text To Speech service. 
 
 # Update the credentials.json file
 1. Change to the Excercise 4 directory:
