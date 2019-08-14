@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: watson-text-to-speech
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: watson-text-to-speech
+      labels:
+        run: watson-demo
+    spec:
+      containers:
+        - name: watson-text-to-speech
+          image: "us.icr.io/<namespace>/<appname>" # edit here!
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /var/credentials
+              name: apikeyvol
+      volumes:
+        - name: apikeyvol
+          secret:
+            secretName: apikey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: watson-service
+  labels:
+    run: watson-demo
+spec:
+  type: NodePort
+  selector:
+    run: watson-demo
+  ports:
+   - protocol: TCP
+     port: 8080
+     nodePort: 30080

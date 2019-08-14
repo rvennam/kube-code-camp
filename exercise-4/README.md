@@ -1,6 +1,15 @@
 # Deploy an application with IBM Watson services
 
-In this lab, set up an application to leverage the Watson Text To Speech service. 
+In this lab, set up an application to leverage the Watson Speech To Text service. 
+
+# Create the Watson Speech To Text Service
+In this section, you will create the Watson service in your own account and get the service credentials. If you are having trouble creating services in your own account, ask the instructor for the service credentials.
+
+1. Go to cloud.ibm.com and using the account switcher drop down, switch to your own Account. 
+2. Click on the **Catalog**, search for **Speech To Text** service and **Create**
+3. Click on **Service Credentials** on the left
+4. Then, click on **View Credentials**
+5. Take note of the `apikey` value. You will need this key in the next section
 
 # Update the credentials.json file
 1. Change to the Excercise 4 directory:
@@ -9,8 +18,8 @@ In this lab, set up an application to leverage the Watson Text To Speech service
     cd ../exercise-4
     ```
 
-2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `kube-code-camp/exercise-4/watson/credentials.json` and then save the file. The apikey required for this section of the lab was provided for you as a part of the grant-clusters app. Update the apikey value now, and save the file.
-
+2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `kube-code-camp/exercise-4/watson/credentials.json` and then save the file. 
+   
 3. Create a Kubernetes Secret from on the credentials stored in this file.
 
     ```
@@ -19,7 +28,7 @@ In this lab, set up an application to leverage the Watson Text To Speech service
 4. Run `kubectl get secret` to see your secret called `apikey`
 
 
-## Build the image for the Watson Text to Speech application
+## Build the image for the Watson Speech to Text application
 
 1. Create a unique application name for the watson app you're about to build. Something like `bmv-watson-1111`
 
@@ -34,12 +43,12 @@ In this lab, set up an application to leverage the Watson Text To Speech service
    ```
 3. Run `ibmcloud cr images` and find your new image. You will need the image name in the next step.
 
-3. Edit the watson-deployment.yml file andupdate the image tag with the registry path to the image you just created. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
+3. Edit the watson-deployment.yml file and update the image tag with the registry path to the image you just created. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-deployment.yml`. Remember to save once you've edited it.
 
     ```yml
     spec:
       containers:
-        - name: watson-text-to-speech
+        - name: watson-speech-to-text
           image: "us.icr.io/<namespace>/<appname>" # edit here!
           # change to the path of the watson image you just built and pushed
           # ex: image: "us.icr.io/code-camp/bmv-watson-1234"
@@ -119,14 +128,19 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     ```
 4. In a new browser tab, go to your application! The URL will be `https://watson.<Ingress Subdomain>`
 
-    ![](../README_images/watson-tts.png)
+
+![](../README_images/watson-stt.png)
     
-4. Clean up the deployment, pods, and services you created:
+You should be able to click the **Record** button and start speaking into your microphone. Watch the text get trascribed live!
+
+## Clean up
+
+1. Clean up the deployment, pods, and services you created:
 
     ```
     kubectl delete -f watson-deployment.yml
     ```
-5. Clean up the Ingress you created:
+2. Clean up the Ingress you created:
 
  ```
  kubectl delete -f watson-ingress.yml

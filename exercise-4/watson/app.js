@@ -1,83 +1,77 @@
+/**
+ * Copyright 2015 IBM Corp. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 const express = require('express');
 var fs = require('fs')
 
 const app = express();
-const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
+const AuthorizationV1 = require('ibm-watson/authorization/v1');
+const IamTokenManagerV1 = require('ibm-watson/iam-token-manager/v1');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-const getFileExtension = (acceptQuery) => {
-  const accept = acceptQuery || '';
-  switch (accept) {
-    case 'audio/ogg;codecs=opus':
-    case 'audio/ogg;codecs=vorbis':
-      return 'ogg';
-    case 'audio/wav':
-      return 'wav';
-    case 'audio/mpeg':
-      return 'mpeg';
-    case 'audio/webm':
-      return 'webm';
-    case 'audio/flac':
-      return 'flac';
-    default:
-      return 'mp3';
-  }
-};
-let textToSpeech;
+// Create the token manager
+let tokenManager;
+let instanceType;
+const serviceUrl = process.env.SPEECH_TO_TEXT_URL || 'https://stream.watsonplatform.net/speech-to-text/api';
 let credentialsFile = '/var/credentials/credentials.json';
 
-if (process.env.TEXT_TO_SPEECH_IAM_APIKEY && process.env.TEXT_TO_SPEECH_IAM_APIKEY !== '') {
-  textToSpeech = new TextToSpeechV1({
-    url: process.env.TEXT_TO_SPEECH_URL || 'https://stream.watsonplatform.net/text-to-speech/api',
-    iam_apikey: process.env.TEXT_TO_SPEECH_IAM_APIKEY || '<iam_apikey>',
-    iam_url: 'https://iam.bluemix.net/identity/token',
+if (process.env.SPEECH_TO_TEXT_IAM_APIKEY && process.env.SPEECH_TO_TEXT_IAM_APIKEY !== '') {
+  instanceType = 'iam';
+  tokenManager = new IamTokenManagerV1({
+    iamApikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY || '<iam_apikey>',
+    iamUrl: process.env.SPEECH_TO_TEXT_IAM_URL || 'https://iam.bluemix.net/identity/token',
   });
 } else if (fs.existsSync(credentialsFile)) {
+  instanceType = 'iam';
   var binding = JSON.parse(fs.readFileSync(credentialsFile));
-  textToSpeech = new TextToSpeechV1({
-    url: binding.url,
-    iam_apikey: binding.apikey,
-    iam_url: 'https://iam.bluemix.net/identity/token',
+  tokenManager = new IamTokenManagerV1({
+    iamApikey: binding.apikey,
+    iamUrl: binding.url,
   });
 } else {
   console.error("NO WATSON CREDENTIALS FOUND");
   process.exit();
 }
 
+app.get('/', (req, res) => res.render('index'));
 
-
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-/**
- * Pipe the synthesize method
- */
-app.get('/api/v1/synthesize', (req, res, next) => {
-  const transcript = textToSpeech.synthesize(req.query);
-  transcript.on('response', (response) => {
-    if (req.query.download) {
-      response.headers['content-disposition'] = `attachment; filename=transcript.${getFileExtension(req.query.accept)}`;
+// Get credentials using your credentials
+app.get('/api/v1/credentials', (req, res, next) => {
+  tokenManager.getToken((err, token) => {
+    if (err) {
+      next(err);
+    } else {
+      let credentials;
+      if (instanceType === 'iam') {
+        credentials = {
+          accessToken: token,
+          serviceUrl,
+        };
+      } else {
+        credentials = {
+          token: token.token,
+          serviceUrl,
+        };
+      }
+      res.json(credentials);
     }
   });
-  transcript.on('error', next);
-  transcript.pipe(res);
 });
-
-// Return the list of voices
-app.get('/api/v1/voices', (req, res, next) => {
-  textToSpeech.voices(null, (error, voices) => {
-    if (error) {
-      return next(error);
-    }
-    return res.json(voices);
-  });
-});
-
-// error-handler settings
-require('./config/error-handler')(app);
 
 module.exports = app;

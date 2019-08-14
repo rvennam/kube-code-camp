@@ -18,8 +18,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 require('@babel/register');
 
-// eslint-disable-next-line
-describe('react', function () {
+describe('react', () => {
   it('should render some html', () => {
     const index = require('../../views/index.jsx').default;
     const element = React.createElement(index, null);

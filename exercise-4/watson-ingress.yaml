@@ -17,4 +17,4 @@ spec:
       - path: /
         backend:
           serviceName: watson-service
-          servicePort: 8080
+          servicePort: 3000

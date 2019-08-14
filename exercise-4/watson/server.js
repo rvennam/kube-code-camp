@@ -1,11 +1,8 @@
-#! /usr/bin/env node
+// load environment properties from a .env file for local development
+require('dotenv').load({ silent: true });
 
-require('dotenv').config({ silent: true });
+const app = require('./app.js');
 
-const server = require('./app');
-
-const port = process.env.PORT || 8080;
-
-server.listen(port, () => {
-  console.log('Server running on port: %d', port);
-});
+const port = process.env.PORT || 3000;
+app.listen(port);
+console.log('listening at:', port);

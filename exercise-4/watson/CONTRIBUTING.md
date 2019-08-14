@@ -13,7 +13,7 @@ or [Stack Overflow](http://stackoverflow.com/questions/ask?tags=ibm-watson).
 # Issues
 
 If you encounter an issue with the Node.js library, you are welcome to submit
-a [bug report](https://github.com/watson-developer-cloud/text-to-speech-nodejs/issues).
+a [bug report](https://github.com/watson-developer-cloud/speech-to-text-nodejs/issues).
 Before that, please search for similar issues. It's possible somebody has
 already encountered this issue.
 

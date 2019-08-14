@@ -1,2 +1,4 @@
+# this file is compiled
+public/scripts/analytics.js
 coverage
-public/js/analytics.js
+logs

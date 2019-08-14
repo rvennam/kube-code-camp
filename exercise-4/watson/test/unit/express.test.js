@@ -22,8 +22,13 @@ require('dotenv').config({ path: path.join(__dirname, '../../.env.example') });
 
 const app = require('../../app');
 
-describe('express', function express() { // eslint-disable-line
-  it('load home page when GET /', () => request(app).get('/').expect(200));
 
-  it('404 when page not found', () => request(app).get('/foo/bar').expect(404));
+describe('express', () => {
+  it('load home page when GET /', () => {
+    request(app).get('/').expect(200);
+  });
+
+  it('404 when page not found', () => {
+    request(app).get('/foo/bar').expect(404);
+  });
 });
