@@ -2,8 +2,8 @@
 
 In this lab, set up an application to leverage the Watson Speech To Text service. 
 
-# Create the Watson Speech To Text Service
-In this section, you will create the Watson service in your own account and get the service credentials. If you are having trouble creating services in your own account, ask the instructor for the service credentials.
+## Create the Watson Speech To Text Service (Skip if the Watson API key is provided for you)
+In this section, you will create the Watson service in your own account and get the service credentials.
 
 1. Go to cloud.ibm.com and using the account switcher drop down, switch to your own Account. 
 2. Click on the **Catalog**, search for **Speech To Text** service and **Create**
@@ -11,7 +11,7 @@ In this section, you will create the Watson service in your own account and get 
 4. Then, click on **View Credentials**
 5. Take note of the `apikey` value. You will need this key in the next section
 
-# Update the credentials.json file
+## Update the credentials.json file
 1. Change to the Excercise 4 directory:
 
     ```
