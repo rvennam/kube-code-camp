@@ -18,14 +18,15 @@ In this section, you will create the Watson service in your own account and get 
     cd ../exercise-4
     ```
 
-2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, edit the file at `kube-code-camp/exercise-4/watson/credentials.json` and then save the file. 
+2. Edit the credentials.json file found in `kube-code-camp/exercise-4/watson/credentials.json`. Remember that to edit this file, you need to click the pencil icon, 
+3. Update the `apikey` value with the value from the previous section and then save the file. 
    
-3. Create a Kubernetes Secret from on the credentials stored in this file.
+4. Create a Kubernetes Secret from on the credentials stored in this file.
 
     ```
-    kubectl create secret generic apikey --from-file=./watson/credentials.json 
+    kubectl create secret generic apikey --from-file=./credentials.json 
     ```
-4. Run `kubectl get secret` to see your secret called `apikey`
+5. Run `kubectl get secret` to see your secret called `apikey`
 
 
 ## Build the image for the Watson Speech to Text application
