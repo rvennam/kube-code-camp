@@ -1,6 +1,6 @@
 # Deploy an application with IBM Watson services
 
-In this lab, set up an application to leverage the Watson Speech To Text service. 
+In this section, you will deploy an application that leverages the Watson Speech To Text service. 
 
 ## Create the Watson Speech To Text Service (Skip if the Watson API key is provided for you)
 In this section, you will create the Watson service in your own account and get the service credentials.
