@@ -32,7 +32,7 @@ The pipeline takes a few minutes to build and deploy your application. While tha
 ## Update the code
 1. Go back to the toolchains page and select the `Git` tile again
 2. Open `app.js` and click `Edit`
-3. Find the Welcome message near Line 22 and update it with your own message
+3. Find the Welcome message near Line 28 and update it with your own message
    ```
    res.send('Hello World!');
    ```
