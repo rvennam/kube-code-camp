@@ -24,7 +24,7 @@ In this section, you will create the Watson service in your own account and get 
 4. Create a Kubernetes Secret from on the credentials stored in this file.
 
     ```
-    kubectl create secret generic apikey --from-file=./credentials.json 
+    kubectl create secret generic apikey --from-file=./watson/credentials.json 
     ```
 5. Run `kubectl get secret` to see your secret called `apikey`
 
@@ -110,7 +110,7 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     ```
     
 2. Note the `Ingress Subdomain` and `Ingress Secret` values. You'll need this in the next step.
-3. In `watson-ingress.yaml`, update the three locations marked `<Ingress Subdomain>` and `<Ingress Secret>`. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-ingress.yml`. Remember to save once you've edited it.
+3. In `watson-ingress.yaml`, update the three locations marked `<Ingress Subdomain>` and `<Ingress Secret>`. Remember, to update a file click the pencil icon, find the file at `kube-code-camp/exercise-4/watson-ingress.yaml`. Remember to save once you've edited it.
     ```
     spec:
       tls:
@@ -144,7 +144,7 @@ You should be able to click the **Record** button and start speaking into your m
 2. Clean up the Ingress you created:
 
  ```
- kubectl delete -f watson-ingress.yml
+ kubectl delete -f watson-ingress.yaml
  ```
 
 Continue on to [Exercise 5](../exercise-5/README.md)
