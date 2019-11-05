@@ -36,6 +36,6 @@ This will set up another toolchain for your new application. The toolchain's det
 4. At the bottom of the logs, click the health check link to see that your application is up and running healthily.
 5. Remove the `/health` portion of the URL so that the URL is in the form `<IP_address>:<port>`. Now you'll see the starter kit's homepage.
 
-![](../README_images/nodejs-web-app.png)
+![](../README_images/starter-kit-web-app.png)
 
 Thanks to Starter Kits, you have nothing to worry about except coding your business logic. The boilerplate is in place for a web application. A toolchain is set up to build, test, and deploy your code, and your application is already available. And furthermore, this was all done in the IBM Cloud console with a few clicks.
