@@ -9,3 +9,6 @@
     * [Create and Scale App with .yaml](exercise-3b/README.md)
     * [Deploy an application with IBM Watson services](exercise-4/README.md)
     * [Role Based Access Control (RBAC)](exercise-5/README.md)
+    * [DevOps Toolchain](exercise-6/README.md)
+    * [Starter Kits](exercise-7/README.md)
+    * [Finish](finish/README.md)

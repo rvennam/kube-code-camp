@@ -1,8 +1,12 @@
-FROM node:9.4.0-alpine
-COPY app.js .
-COPY package.json .
-RUN npm install &&\
-    apk update &&\
-    apk upgrade
-EXPOSE  8080
-CMD node app.js
+
+FROM centos:centos6
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+RUN yum install -y nodejs  #
+# Define working directory.
+COPY . /src
+WORKDIR /src
+RUN npm install
+
+EXPOSE 3000 8020
+# Define default command.
+CMD ["node", "server.js"]

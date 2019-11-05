@@ -1,43 +1,77 @@
-var express = require('express')
-var app = express()
-var startTime = Date.now()
+/**
+ * Copyright 2015 IBM Corp. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+const express = require('express');
 var fs = require('fs')
 
-const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
+const app = express();
+const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
+const AuthorizationV1 = require('ibm-watson/authorization/v1');
+const IamTokenManagerV1 = require('ibm-watson/iam-token-manager/v1');
 
-var binding = JSON.parse(fs.readFileSync('/var/credentials/credentials.json'));
+// Bootstrap application settings
+require('./config/express')(app);
 
-const tone_analyzer = binding.apikey ? new ToneAnalyzerV3({
- iam_apikey: binding.apikey,
- url: binding.url,
- version: '2016-05-19'
-}) : new ToneAnalyzerV3({
- username: binding.username,
- password: binding.password,
- url: binding.url,
- version: '2016-05-19'
+// Create the token manager
+let tokenManager;
+let instanceType;
+const serviceUrl = process.env.SPEECH_TO_TEXT_URL || 'https://stream.watsonplatform.net/speech-to-text/api';
+let credentialsFile = '/var/credentials/credentials.json';
+
+if (process.env.SPEECH_TO_TEXT_IAM_APIKEY && process.env.SPEECH_TO_TEXT_IAM_APIKEY !== '') {
+  instanceType = 'iam';
+  tokenManager = new IamTokenManagerV1({
+    iamApikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY || '<iam_apikey>',
+    iamUrl: process.env.SPEECH_TO_TEXT_IAM_URL || 'https://iam.bluemix.net/identity/token',
+  });
+} else if (fs.existsSync(credentialsFile)) {
+  instanceType = 'iam';
+  var binding = JSON.parse(fs.readFileSync(credentialsFile));
+  tokenManager = new IamTokenManagerV1({
+    iamApikey: binding.apikey,
+    iamUrl: binding.url,
+  });
+} else {
+  console.error("NO WATSON CREDENTIALS FOUND");
+  process.exit();
+}
+
+app.get('/', (req, res) => res.render('index'));
+
+// Get credentials using your credentials
+app.get('/api/v1/credentials', (req, res, next) => {
+  tokenManager.getToken((err, token) => {
+    if (err) {
+      next(err);
+    } else {
+      let credentials;
+      if (instanceType === 'iam') {
+        credentials = {
+          accessToken: token,
+          serviceUrl,
+        };
+      } else {
+        credentials = {
+          token: token.token,
+          serviceUrl,
+        };
+      }
+      res.json(credentials);
+    }
+  });
 });
 
-app.get('/', function(req, res) {
- res.send('Ready to analyze Tone!')
-})
-
-app.get('/healthz', function(req, res) {
- res.send('OK!')
-})
-
-app.get('/analyze', function(req, res) {
- tone_analyzer.tone({ tone_input: {
-   text: req.query.text
- } }, function(err, tone) {
-   if (err) {
-     res.status(500).send(err);
-   } else {
-     res.send(JSON.stringify(tone, null, 2));
-   }
- });
-})
-
-app.listen(8081, function() {
- console.log('Sample app is listening on port 8081.')
-})
+module.exports = app;

@@ -5,7 +5,7 @@ In this part of our lab we'll be learning a little bit about how RBAC works. To 
 
 ## Setup service accounts
 
-For this exercise we'll create a couple of new namespacesa and service accounts to allow us to easily demonstrate the RBAC functionality
+For this exercise we'll create a couple of new namespaces and service accounts to allow us to easily demonstrate the RBAC functionality
 
 ```
 kubectl create ns team-a
