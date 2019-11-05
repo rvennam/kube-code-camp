@@ -13,6 +13,8 @@ Creating an app from a Starter Kit is quite simple. Follow these steps to quickl
 6. Make sure that the selected resource group is `lab`.
 7. Click `create`
 
+![](../README_images/starter-kit.png)
+
 ## Deploy Using Continuous Delivery
 When you app loads, there is an option to add existing services or create new services and connect them to your app. This is a simple way to integrate IBM Cloud services into your application.
 
@@ -24,14 +26,16 @@ On the far right side, there is a knowledge guide. The first section of this gui
 4. Ensure that the resource group selected is `lab`.
 5. Click `Create`
 
-This will set up another toolchain for your new application. The toolchain's details should appear on the screen.
+![](../README_images/starter-kit-toolchain.png)
 
-A delivery pipeline is part of this new toolchain. Under `Delivery Pipelines`, click on the pipeline's name to view it.
+This will set up another toolchain for your new application. The toolchain's details should appear on the screen, as seen in the above picture. Now let's view the delivery pipeline that is a part of this toolchain, and see how we have deployed a starter kit with just a few clicks.
 
-When it loads, you'll notice that it is already running. Watch as the three stages (Build, Deploy, and Health) succeed. Once each stage has completed, click the `Deploy` job in the `Deploy` stage. This will load the logs for the deployment.
+1. Under `Delivery Pipelines`, click on the pipeline's name to view it.
+2. Wait for all three stages to complete.
+3. Click the `Deploy` job in the `Deploy` stage. This will load the logs for the deployment.
+4. At the bottom of the logs, click the health check link to see that your application is up and running healthily.
+5. Remove the `/health` portion of the URL so that the URL is in the form `<IP_address>:<port>`. Now you'll see the starter kit's homepage.
 
-At the bottom of the logs, you should see a link to the health check. Click this link to see that your application is up and running healthily.
-
-Now, remove the `/health` portion of the URL so that the URL is in the form `<IP_address>:<port>`. You'll see that your web application is up and running.
+![](../README_images/nodejs-web-app.png)
 
 Thanks to Starter Kits, you have nothing to worry about except coding your business logic. The boilerplate is in place for a web application. A toolchain is set up to build, test, and deploy your code, and your application is already available. And furthermore, this was all done in the IBM Cloud console with a few clicks.
