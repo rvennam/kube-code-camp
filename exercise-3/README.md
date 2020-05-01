@@ -98,12 +98,10 @@ To update:
    image being used.
 
     ```
-    kubectl set image deployment/hello-world hello-world=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
+    kubectl set image deployment/hello-world $MYPROJECT=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
     ```
 
-    Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
-
-1. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
+2. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
 
   Expected Output:
    ```
@@ -215,19 +213,14 @@ Also, Kubernetes uses readiness checks to know when a container is ready to star
 
 In this example, we have defined a HTTP liveness probe to check health of the container every five seconds. For the first 10-15 seconds the `/healthz` returns a `200` response and will fail afterward. Kubernetes will automatically restart the service.  
 
-1. The `healthcheck.yml` is a configuration file that combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these files to quickly deploy applications to Kubernetes. We will need to update the line for `image` so that it includes your own image details. You stored these values in environment variables, so you could echo those environment variables to get your information.
+1. The `my-deploy-with-health-check.yaml` is a configuration file that combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these files to quickly deploy applications to Kubernetes. We will need to replace some variables in this file with your values
 
     ```
-    echo $MYREGISTRY
-    echo $MYNAMESPACE
-    echo $MYPROJECT
+    envsubst < ./deploy-with-health-check.yaml > ./my-deploy-with-health-check.yaml
+    cat ./my-deploy-with-health-check.yaml
     ```
 
-2. To edit the file you need to click the pencil icon and click on **Files** on the left. Find and edit the file at `kube-code-camp/exercise-3/healthcheck.yml`. You will update `<registry>/<namespace>/<unique_appname>:2` to your own value, which should look something like `us.icr.io/code-camp/bmv-app-123:2`. Save the file.
-
-    ![](../README_images/pencil.png)
-
-3. Note the HTTP liveness probe in `healthcheck.yml` that checks the health of the container every five seconds.
+2. Note the HTTP liveness probe in `my-deploy-with-health-check.yaml` that checks the health of the container every five seconds.
 
     ```
     livenessProbe:
@@ -238,31 +231,31 @@ In this example, we have defined a HTTP liveness probe to check health of the co
       periodSeconds: 5
     ```
 
-4. In the **Service** section, note the `NodePort`. Rather than generating a random NodePort like you did in the previous lesson, you can specify a port in the 30000 - 32767 range. This example uses 30072.
+3. In the **Service** section, note the `NodePort`. Rather than generating a random NodePort like you did in the previous lesson, you can specify a port in the 30000 - 32767 range. This example uses 30072.
 
-5. Return to the cloudshell. Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
+4. Return to the cloudshell. Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
 
    ```
-   kubectl apply -f healthcheck.yml
+   kubectl apply -f my-deploy-with-health-check.yaml
    ```
 
-6. Check out the new deployments and pods that were created.
+5. Check out the new deployments and pods that were created.
 
     ```
     kubectl get deployments,pods
     ```
 
-7. Open a browser and check out the app. To form the URL, combine the worker public IP you got in the last exercise with the NodePort that was specified in the configuration file. To get the public IP address for the worker node again:
+6. Open a browser and check out the app. To form the URL, combine the worker public IP you got in the last exercise with the NodePort that was specified in the configuration file. To get the public IP address for the worker node again:
 
     ```
-    ibmcloud ks workers $MYCLUSTER
+    ibmcloud ks workers --cluster $MYCLUSTER
     ```
 
-    In a browser, go to `WORKER_IP:30072/healthz`, and you'll see a success or error message. If you do not see this text, don't worry. This app is designed to go up and down.
+    In a browser, go to `WORKER_PUBLIC_IP:30072/healthz`, and you'll see a success or error message. If you do not see this text, don't worry. This app is designed to go up and down.
 
     For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, the application is designed to show a timeout message. This will cause the health check to fail.
 
-8. Run `kubectl get pods` after a couple of minutes. You'll see that when the application fails it's health check, Kuberentes will detect this failure and restart the pod. Look at the **RESTARTS** column.
+7. Run `kubectl get pods` after a couple of minutes. You'll see that when the application fails it's health check, Kuberentes will detect this failure and restart the pod. Look at the **RESTARTS** column.
    ```
    binaryram@cloudshell-1-867b4b75bd-9mzp4:~/kube-code-camp/exercise-3$ kubectl get pods
    NAME                                  READY   STATUS    RESTARTS   AGE
@@ -275,7 +268,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 1. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
 
     ```
-    kubectl delete -f healthcheck.yml
+    kubectl delete -f my-deploy-with-health-check.yaml
     ```
 
 Congratulations! You deployed the second version of the app. You had to use fewer commands to get the app up and running, you learned how health check works, and you edited a deployment, which is great! You also learned how to undo a rollout and how to delete resources using a .yml file. Exercise 3 is now complete.

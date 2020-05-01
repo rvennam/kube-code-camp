@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: <registry>/<namespace>/<unique_appname>:1
+        image: "$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1"
         ports:
         - name: http-server
           containerPort: 8080

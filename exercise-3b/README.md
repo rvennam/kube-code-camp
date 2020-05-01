@@ -46,12 +46,15 @@ The above configuration file create a deployment object named 'hello-world' with
   cd ../exercise-3b
   ```
 
-1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to your image name. The line should look something like `us.icr.io/code-camp/bmv-app-123:1`. Save the file.
-
-1. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
+2. Use this script to replace the values in hello-world-deployment file with your values.
+  ```
+  envsubst < ./hello-world-deployment.yaml > ./my-hello-world-deployment.yaml
+  cat ./my-hello-world-deployment.yaml
+  ```
+3. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
 
   ```
-  kubectl create -f hello-world-deployment.yml
+  kubectl create -f my-hello-world-deployment.yaml
   ```
 
 2. We can then list the pods it created by listing all pods that have a label of "app" with a value of "hello-world". This matches the labels defined above in the yaml file in the spec.template.metadata.labels section.
@@ -77,7 +80,7 @@ The above configuration file create a deployment object named 'hello-world' with
   You can also edit the deployment file we used to create the Deployment to make changes. You should use the following command to make the change effective when you edit the deployment locally. Run the `kubectl apply` command to set the replicas back to 3.
 
   ```
-  kubectl apply -f hello-world-deployment.yml
+  kubectl apply -f my-hello-world-deployment.yaml
   ```
   This will ask Kubernetes to "diff" our yaml file with the current state of the Deployment and apply just those changes.
 
@@ -128,7 +131,7 @@ The above configuration creates a Service resource named hello-world. A Service 
 
 1. Let's also clean up the hello-world deployment and service we just created.
   ```
-  kubectl delete -f hello-world-deployment.yml
+  kubectl delete -f my-hello-world-deployment.yaml
   kubectl delete -f hello-world-service.yml
   ```
 

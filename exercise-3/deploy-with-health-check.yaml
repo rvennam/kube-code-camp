@@ -1,9 +1,12 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hw-demo-deployment
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      run: hw-demo-health
   template:
     metadata:
       name: pod-liveness-http
@@ -13,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hw-demo-container
-          image: "<registry>/<namespace>/<unique_appname>:2"
+          image: "$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2"
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
