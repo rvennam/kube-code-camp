@@ -7,7 +7,7 @@ Congratulations! You've reached the end of the lab.
 Done with your cluster? 
 
     ```
-    ibmcloud ks cluster-rm $MYCLUSTER --force-delete-storage;
+    ibmcloud ks cluster rm --cluster $MYCLUSTER --force-delete-storage;
     ```
 
 ## Additional Resources
