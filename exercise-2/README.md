@@ -105,7 +105,7 @@ There are several ways to depose your application depending on if it is for deve
 2. Note the **Public IP** for ANY ONE of the workers, which you can see from the following command:
 
     ```
-    ibmcloud ks workers $MYCLUSTER
+    ibmcloud ks workers --cluster $MYCLUSTER
     ```
 
 3. Save this IP as an environment variable
