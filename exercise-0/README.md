@@ -2,11 +2,11 @@
 In this section, you will create your own IBM Cloud account, and then get access to a IBM Cloud Lab account which contains pre-provisioned clusters. Each lab attendee will be granted access to one cluster.
 
 ## Login with your IBM Cloud Account and Get Access to Your Cluster
-1. [Click here to go to the Grant Cluster](https://5129.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up), the lab key from the instructor.
+1. [Click here to go to the Lab Cluster Inviter](https://ikslab.mybluemix.net/) web page and enter your IBM ID (the email you used to sign up to IBM Cloud), the lab key from the instructor.
 
     ![](../README_images/get-clusters.png)
 
-2. You will be added to the IBM Lab account and granted access to a cluster. Note the name of your cluster. It will be something like: `iks101`
+2. You will be added to the **1717629** Lab account and granted access to a cluster. Note the name of your cluster. It will be something like: `ikslab-01`
 3. Refresh your [IBM Cloud Dashboard](https://cloud.ibm.com)
 4. Switch to the **IBM** account by clicking on the account selection drop down in the top nav bar.
 5. Click on **Clusters** in the Resource Summary tile.
