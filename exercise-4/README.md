@@ -94,7 +94,7 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
 1. Get the Ingress information for your cluster
 
     ```
-    ibmcloud ks cluster-get $MYCLUSTER
+    ibmcloud ks cluster get --cluster $MYCLUSTER
     ```
     Example output:
     ```
@@ -123,7 +123,7 @@ Standard clusters on IKS come with an IBM-provided domain. This gives you a bett
     
     ![](../README_images/watson-ingress.png)
     
-4. Apply this yaml to your cluster
+4. Apply this yaml to your cluster.
     ```
     kubectl apply -f watson-ingress.yaml
     ```

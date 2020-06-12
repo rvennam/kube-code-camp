@@ -16,7 +16,7 @@ which your cluster has access.
 1. Download a copy of this repository:
 
     ```
-    git clone https://github.com/beemarie/kube-code-camp
+    git clone https://github.com/beemarie/kube-code-camp --depth 1
     ```
 
 2. Change directory to Exercise 2: 
@@ -25,9 +25,11 @@ which your cluster has access.
    cd kube-code-camp/exercise-2
    ```
 
-3. Take a look at the `app.js` and the `Dockerfile` files to see the application source and the image we are about to build. To view a file you need to click the pencil icon and click on **Files** on the left. Find the files under `kube-code-camp/exercise-2`. 
-
-    ![](../README_images/pencil.png)
+3. Take a look at the `app.js` and the `Dockerfile` files to see the application source and the image we are about to build. . 
+   ```
+   cat app.js
+   cat Dockerfile
+   ```
 
 4. Ensure the region is set for the IBM Cloud Container Registry:
 
@@ -35,29 +37,23 @@ which your cluster has access.
     ibmcloud cr region-set us-south
     ```
 
-5. Login to IBM Cloud Container Registry, which will allow you to push images to the registry.
-
-    ```
-    ibmcloud cr login
-    ```
-
-6. Select a unique name for your project. **NOTE: This unique name must be all lowercase**. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
+5. Select a unique name for your project. **NOTE: This unique name must be all lowercase**. This could be something like `your-initials-app-somenumber`, or `bmv-app-1227`. Set this unique name as the MYPROJECT environment variable:
     ```
     export MYPROJECT=<UNIQUE_PROJECT_NAME>
     ```
 
-7. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
+6. A namespace has already been created in this container registry for use in the lab. Set the namespace variable as well as the registry environment variable.
     ```
-    export MYNAMESPACE=code-camp
+    export MYNAMESPACE=ikslab-users
     export MYREGISTRY=us.icr.io
     ```
    
-8. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
+7. Build and tag (`-t`) the docker image and then push it to the IBM Cloud Container Registry, using the `ibmcloud cr build` command:
     ```
     ibmcloud cr build . -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
     ```
 
-9.  Verify the image is built: 
+8.  Verify the image is built: 
 
    ```
    ibmcloud cr images
@@ -71,7 +67,7 @@ This is your image in the IBM Cloud Container Registry. Next, you will reference
 1. Start by running your image as a deployment: 
 
    ```
-   kubectl run hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
+   kubectl create deployment hello-world --image=$MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
    ```
 2. Run `kubectl get deployments` to see the Deployment resource you just created.
 3. Run `kubectl get pods` to check the Status of your pods.
@@ -83,6 +79,10 @@ This is your image in the IBM Cloud Container Registry. Next, you will reference
    NAME                          READY     STATUS              RESTARTS   AGE
    hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
    ```
+
+## Expose your application for incoming traffic
+
+There are several ways to depose your application depending on if it is for development use or production public use. We will first go thru a development flow.
 
 3. Once the status reads `Running`, expose that deployment as a service of type `NodePort` - accessed through the IP of the worker nodes.  The example for this lab listens on port 8080.  Run:
 
@@ -102,19 +102,19 @@ This is your image in the IBM Cloud Container Registry. Next, you will reference
     export NODEPORT=<your_port_here>
     ```
 
-1. Note the **Public IP** for any one of the workers, which you can see from the following command:
+2. Note the **Public IP** for ANY ONE of the workers, which you can see from the following command:
 
     ```
-    ibmcloud ks workers $MYCLUSTER
+    ibmcloud ks workers --cluster $MYCLUSTER
     ```
 
-1. Save this IP as an environment variable
+3. Save this IP as an environment variable
 
     ```
     export WORKER_IP=<your_ip_here>
     ```
 
-1. You can now access your application using `curl` or in your web browser.
+4. You can now access your application using `curl` or in your web browser.
 
     ```
     curl $WORKER_IP:$NODEPORT

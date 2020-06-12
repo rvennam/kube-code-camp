@@ -46,12 +46,15 @@ The above configuration file create a deployment object named 'hello-world' with
   cd ../exercise-3b
   ```
 
-1. Edit the hello-world-deployment file to include correct values for the image name -- based on registry, namespace, and project.  Remember, to edit the file you need to click the pencil icon and edit the file at `kube-code-camp/exercise-3b/hello-world-deployment.yml`. You will update `<registry>/<namespace>/<unique_appname>:1` to your image name. The line should look something like `us.icr.io/code-camp/bmv-app-123:1`. Save the file.
-
-1. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
+2. Use this script to replace the values in hello-world-deployment file with your values.
+  ```
+  envsubst < ./hello-world-deployment.yaml > ./my-hello-world-deployment.yaml
+  cat ./my-hello-world-deployment.yaml
+  ```
+3. Create the hello world deployment. To create a Deployment using this configuration file we use the following command:
 
   ```
-  kubectl create -f hello-world-deployment.yml
+  kubectl create -f my-hello-world-deployment.yaml
   ```
 
 2. We can then list the pods it created by listing all pods that have a label of "app" with a value of "hello-world". This matches the labels defined above in the yaml file in the spec.template.metadata.labels section.
@@ -62,7 +65,11 @@ The above configuration file create a deployment object named 'hello-world' with
 
 ## Edit Configuration
 
-1. When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
+1. Set your kubectl editor to nano
+  ```
+  export KUBE_EDITOR="nano"
+  ```
+2. When you change the number of replicas in the configuration, Kubernetes will try to add, or remove, pods from the system to match your request. You can make these modifications by using the following command:
 
   ```
   kubectl edit deployment hello-world
@@ -70,14 +77,14 @@ The above configuration file create a deployment object named 'hello-world' with
 
   This will retrieve the latest configuration for the Deployment from the Kubernetes server and then load it into an editor for you. You'll notice that there are a lot more fields in this version than the original yaml file we used. This is because it contains all of the properties about the Deployment that Kubernetes knows about, not just the ones we chose to specify when we create it. Also notice that it now contains the status section mentioned previously.
 
-1. Try editing `replicas` to 4, under the `spec` section, near the top. This editor uses `vi` style commands. You can use `i` to insert, `w` to write, and `q` to quit.
+1. Try editing `replicas` to 4, under the `spec` section, near the top. Use Ctrl-X to exit, press Y to save and hit Enter.
 
 1. If you run `kubectl get pods`, you should see that there are now 4 pods.
 
   You can also edit the deployment file we used to create the Deployment to make changes. You should use the following command to make the change effective when you edit the deployment locally. Run the `kubectl apply` command to set the replicas back to 3.
 
   ```
-  kubectl apply -f hello-world-deployment.yml
+  kubectl apply -f my-hello-world-deployment.yaml
   ```
   This will ask Kubernetes to "diff" our yaml file with the current state of the Deployment and apply just those changes.
 
@@ -128,7 +135,7 @@ The above configuration creates a Service resource named hello-world. A Service 
 
 1. Let's also clean up the hello-world deployment and service we just created.
   ```
-  kubectl delete -f hello-world-deployment.yml
+  kubectl delete -f my-hello-world-deployment.yaml
   kubectl delete -f hello-world-service.yml
   ```
 
@@ -138,5 +145,3 @@ The above configuration creates a Service resource named hello-world. A Service 
   ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:2
   ibmcloud cr image-rm $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:1
   ```
-
-Continue on to [Exercise 4](../exercise-4/README.md)
